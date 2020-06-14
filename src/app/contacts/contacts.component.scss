@@ -1,0 +1,13 @@
+@import '../../scss/variables';
+
+.contacts {
+  color: $dark-primary-text;
+
+  table {
+    width: 100%;
+
+    .mat-column-more {
+      text-align: center;
+    }
+  }
+}
