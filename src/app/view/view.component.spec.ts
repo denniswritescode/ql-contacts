@@ -2,17 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockComponent } from 'ng2-mock-component';
 
-import { MainComponent } from './main.component';
-import { ContactsService } from '../services/contacts.service';
+import { ViewComponent } from './view.component';
+import { ContactsService } from '../services/contacts/contacts.service';
 
-describe('MainComponent', () => {
-  let component: MainComponent;
-  let fixture: ComponentFixture<MainComponent>;
+describe('ViewComponent', () => {
+  let component: ViewComponent;
+  let fixture: ComponentFixture<ViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        MainComponent,
+        ViewComponent,
         MockComponent({ selector: 'app-header'}),
         MockComponent({ selector: 'app-contacts', inputs: ['list']}),
         MockComponent({ selector: 'app-footer'}),
@@ -24,7 +24,7 @@ describe('MainComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainComponent);
+    fixture = TestBed.createComponent(ViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

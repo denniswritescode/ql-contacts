@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>
+  Create New Contact
+  <mat-hint>Scroll to complete.</mat-hint>
+</h2>
+<mat-dialog-content>
+  <form class="contact-form">
+    <mat-form-field class="full-width">
+      <mat-label>Company</mat-label>
+      <input matInput placeholder="Ex. Quicken Loans" value="">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>First name</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="333-555-1234">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput [formControl]="emailControl" placeholder="Ex. joe@ql.com">
+        <mat-error
+          *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')"
+        >
+          Please enter a valid email address.
+        </mat-error>
+        <mat-error *ngIf="emailControl.hasError('required')">
+          Email is required.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Address</mat-label>
+      <input matInput placeholder="Ex. 100 Main St">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Address 2</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>City</mat-label>
+      <input matInput placeholder="Ex. San Francisco">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>State</mat-label>
+      <input matInput placeholder="Ex. California">
+    </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Postal Code</mat-label>
+        <input matInput #postalCode maxlength="5" placeholder="Ex. 94105">
+        <mat-hint align="end">0 / 5</mat-hint>
+      </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="accent">Create</button>
+</mat-dialog-actions>

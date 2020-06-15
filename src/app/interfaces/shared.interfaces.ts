@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 
 export interface IContact {
   _id: string;
@@ -9,3 +10,4 @@ export interface IContact {
   phone: string;
   address: string;
 }
+

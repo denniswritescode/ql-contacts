@@ -1,6 +1,8 @@
-# QlContacts
+# QL Contacts
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+
+Further, it was developed with node v12.18.0 and npm version v6.14.4.
 
 ## Development server
 

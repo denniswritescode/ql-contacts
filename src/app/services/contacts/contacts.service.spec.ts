@@ -3,8 +3,8 @@ import { defer }from 'rxjs';
 import { skipWhile }from 'rxjs/operators';
 
 import { ContactsService } from './contacts.service';
-import { EnvironmentService } from './environment.service';
-import { EnvironmentTestService } from './environment-test.service';
+import { EnvironmentService } from '../environment/environment.service';
+import { EnvironmentTestService } from '../environment/environment-test.service';
 
 
 function asyncData<T>(data: T) {
@@ -14,7 +14,7 @@ function asyncData<T>(data: T) {
 describe('ContactsService', () => {
   let service: ContactsService;
   let httpClientSpy: { get: jasmine.Spy };
-  let mock: any = require('../mocks/contacts.json');
+  let mock: any = require('../../testing/responses/contacts.json');
 
   beforeEach(() => {
 

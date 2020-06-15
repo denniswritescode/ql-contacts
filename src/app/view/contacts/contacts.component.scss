@@ -1,12 +1,19 @@
-@import '../../scss/variables';
+@import '../../../scss/variables';
 
 .contacts {
   color: $dark-primary-text;
 
   table.mat-table {
-    width: 100%;
+    width: 100vw;
 
-    .mat-header-cell {
+    th.mat-header-cell,
+    td.mat-cell {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    th.mat-header-cell {
       font-size: 1.4em;
     }
     

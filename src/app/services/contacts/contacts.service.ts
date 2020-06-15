@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { EnvironmentService } from '../services/environment.service';
-import { IContact } from '../shared/interfaces/shared.interfaces';
+import { EnvironmentService } from '../environment/environment.service';
+import { IContact } from '../../interfaces/shared.interfaces';
 
 @Injectable({
   providedIn: 'root'
