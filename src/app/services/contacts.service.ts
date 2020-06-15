@@ -16,15 +16,15 @@ export class ContactsService {
   constructor(
     private http: HttpClient,
     private env: EnvironmentService,
-  ) { 
-    this.load();
-  }
+  ) {}
 
-  load(): void {
+  load(): Observable<IContact[] | []> {
     this.get()
       .subscribe((data: IContact[]) => {
         this._contacts.next(data);
-      })
+      });
+
+      return this.contacts;
   }
 
   get(): Observable<IContact[]> {

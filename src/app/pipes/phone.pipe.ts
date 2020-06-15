@@ -18,15 +18,21 @@ export class PhonePipe implements PipeTransform {
 
   transform(value: string, format?: string): SafeUrl | string  {
     let nums = value.replace(/[^\d]/g, '');
+    let len = nums.length;
     let digits = nums.slice(-10);
 
-    if(!format || format === 'dash') {
-      return this.dash(digits);
-    }
+    // for now... we're only filtering american numbers
+    if(len === 10 || len === 11) {
+      if(!format || format === 'dash') {
+        return this.dash(digits);
+      }
 
-    if(format === 'link') {
-      return this.href(nums);
+      if(format === 'link') {
+        return this.href(nums);
+      }
     }
+    
+    return value; // fail silently
   }
 
   dash(n: string): string {

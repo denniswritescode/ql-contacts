@@ -1,0 +1,11 @@
+.contact-header {
+  display: flex;
+  flex-direction: row;
+  margin-left: 24px;
+
+  app-contact-add {
+    position: relative;
+    top: -13px;
+    margin-left: 20px;
+  }
+}

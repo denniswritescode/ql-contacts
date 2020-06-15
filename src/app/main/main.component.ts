@@ -16,6 +16,6 @@ export class MainComponent implements OnInit {
   constructor(private contacts: ContactsService) { }
 
   ngOnInit(): void {
-    this.contactList = this.contacts.contacts;
+    this.contactList = this.contacts.load();
   }
 }

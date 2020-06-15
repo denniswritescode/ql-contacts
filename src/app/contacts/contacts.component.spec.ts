@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockComponent } from 'ng2-mock-component';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState, MediaMatcher } from '@angular/cdk/layout';
+import { NgZone } from '@angular/core';
 
 import { ContactsComponent } from './contacts.component';
 import { Observable, of } from 'rxjs';
@@ -8,97 +9,93 @@ import { MatTableModule } from '@angular/material/table';
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
-  let fixture: ComponentFixture<ContactsComponent>;
-  let fullscreen = false;
-  let subscriber;
-  let fakeBreakpointObserver = {
-    observe: (value: string | string[]): Observable<BreakpointState> => {
-      if(!fullscreen) {
-        return of<BreakpointState>({
-          matches: false,
-          breakpoints: {
-            [Breakpoints.Handset]: true,
-          }
-        });
-      } else {
-        return of<BreakpointState>({
-          matches: true,
-          breakpoints: {
-            [Breakpoints.Medium]: true,
-            [Breakpoints.Large]: true,
-            [Breakpoints.XLarge]: true,
-          }
-        });
-      }
+  let breakpointObservers = [];
+  let mobileBreakpointState: BreakpointState = {
+    matches: false,
+    breakpoints: {
+      [Breakpoints.Handset]: true,
+    }
+  };
+  let fullscreenBreakpointState: BreakpointState = {
+    matches: true,
+    breakpoints: {
+      [Breakpoints.Medium]: true,
+      [Breakpoints.Large]: true,
+      [Breakpoints.XLarge]: true,
     }
   };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ContactsComponent ],
-      imports: [ MatTableModule ],
-      providers: [
-        {
-          provide: BreakpointObserver,
-          useValue: fakeBreakpointObserver
-        }
-      ],
-    })
-    .compileComponents();
-  }));
+  //let fakeBreakpointObserver: BreakpointObserver = class {
+  class FakeFPObserver {
+    observe(value: string | string[]): Observable<BreakpointState> {
+      function subscriber(observer) {
+        breakpointObservers.unshift(observer);
+        // breakpointObservers.push(observer);
+
+        return {unsubscribe() {}};
+      }
+
+      return new Observable<BreakpointState>(subscriber);
+    }
+    isMatched(value: string | string[]): boolean {
+      return true;
+    }
+    ngOnDestroy(){}
+  }
+
+  let fakeBreakpointObserver = new FakeFPObserver() as BreakpointObserver;
 
   describe('General Tests', () => {
-    beforeEach(() => {
-      fullscreen = false;
-      fixture = TestBed.createComponent(ContactsComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
-
+    component = new ContactsComponent(fakeBreakpointObserver);
     it('should create instance', () => {
       expect(component).toBeTruthy();
     });
   });
 
+  beforeEach(async(() => {
+    breakpointObservers = [];
+  }));
 
-  describe('Breakpoint Tests (Responsiveness: Mobile)', () => {
-    beforeEach(() => {
-      fullscreen = false;
-      fixture = TestBed.createComponent(ContactsComponent);
-      component = fixture.componentInstance;
-      spyOn(component, 'setMobileLayout');
-      fixture.detectChanges();
+  describe('Breakpoint Tests (Responsiveness: Desktop)', () => {
+    it('should know the screen', () => {
+      let desktopBreakpointTest = (bs) => {
+        expect(bs.matches).toBeTrue();
+        expect(component.setFullLayout).toHaveBeenCalled();
+        expect(component.setMobileLayout).not.toHaveBeenCalled();
+        expect(component.displayedColumns).toContain('phone');
+      };
+
+      fakeBreakpointObserver
+        .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
+        .subscribe(desktopBreakpointTest.bind(this));
+
+      component = new ContactsComponent(fakeBreakpointObserver);
+      spyOn(component, 'setMobileLayout').and.callThrough();
+      spyOn(component, 'setFullLayout').and.callThrough();
+
+      breakpointObservers.forEach(o => o.next(fullscreenBreakpointState));
     });
-
-
-    it('should use the mobile layout when on small screens', () => {
-      expect(component.setMobileLayout).toHaveBeenCalled();
-    });
-
   });
   
-  // describe('Breakpoint Tests (Responsiveness: Desktop)', () => {
-  //   beforeEach(() => {
-  //     mobile = false;
-  //     fixture = TestBed.createComponent(ContactsComponent);
-  //     component = fixture.componentInstance;
-  //     fixture.detectChanges();
-  //   });
-  //   
-  //   afterEach(() => {
-  //     subscriber.unsubscribe();
-  //   });
+  describe('Breakpoint Tests (Responsiveness: Mobile)', () => {
+    it('should know the screen', () => {
+      let mobileBreakpointTest = (bs) => {
+        expect(bs.matches).toBeFalse();
+        expect(component.setFullLayout).not.toHaveBeenCalled();
+        expect(component.setMobileLayout).toHaveBeenCalled();
+        expect(component.displayedColumns).not.toContain('phone');
+      };
 
-  //   it('should use the mobile layout when on small screens', () => {
-  //     let desktopBreakpointTest = (bs) => {
-  //       expect(component.mobile).toBeTruthy();
-  //       expect(component.setMobileLayout).toHaveBeenCalled();
-  //       expect(component.setFullLayout).not.toHaveBeenCalled();
-  //     };
+      fakeBreakpointObserver
+        .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
+        .subscribe(mobileBreakpointTest.bind(this));
+        
+      component = new ContactsComponent(fakeBreakpointObserver);
+      spyOn(component, 'setMobileLayout').and.callThrough();
+      spyOn(component, 'setFullLayout').and.callThrough();
 
-  //     subscriber = fakeBreakpointObserver
-  //       .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
-  //       .subscribe(desktopBreakpointTest.bind(this));
-  //   });
-  // });
+      breakpointObservers.forEach(o => o.next(mobileBreakpointState));
+    });
+  });
+
 });

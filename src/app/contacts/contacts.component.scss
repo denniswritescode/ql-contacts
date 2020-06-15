@@ -3,11 +3,66 @@
 .contacts {
   color: $dark-primary-text;
 
-  table {
+  table.mat-table {
     width: 100%;
 
+    .mat-header-cell {
+      font-size: 1.4em;
+    }
+    
+    i.material-icons {
+      position: relative;
+      top: 7px;
+      margin-right: 12px;
+
+      &.lighten {
+        color: lighten($color: #000000, $amount: 87);
+      }
+    }
+
+    .mat-column-phone,
     .mat-column-more {
       text-align: center;
+    }
+
+    .mat-column-phone {
+      a {
+        color: $accent;
+      }
+    }
+
+    .mat-cell.mat-column-fullName {
+      font-size: 1.1em;
+    }
+
+    .contact-primary {
+      border-bottom-width: 0;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($color: white, $amount: 1);
+      }
+
+      .mat-cell {
+        border-bottom-width: 0;
+      }
+    }
+
+    .expandable-row {
+      height: 0px !important;
+
+      div {
+        overflow: hidden;
+      }
+
+      .mat-cell.mat-column-expandable {
+        background-color: darken($color: white, $amount: 2);
+
+        .contact-expandable {
+          overflow: hidden;
+          display: flex;
+        }
+      }
     }
   }
 }
