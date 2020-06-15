@@ -37,6 +37,9 @@ import { ContactFormComponent } from './contacts/contact-form/contact-form.compo
     ContactHeaderComponent,
     ContactFormComponent,
   ],
+  entryComponents: [
+    ContactFormComponent
+  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
