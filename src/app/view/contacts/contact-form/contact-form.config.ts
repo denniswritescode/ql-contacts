@@ -102,11 +102,14 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     name: 'Postal Code',
     key: 'zipCode',
     placeholder: 'Ex. 54321',
-    type: 'text',
+    type: 'number',
     value: '',
     state: '',
     validation: {
       required: true,
+      minLength: 5,
+      maxLength: 5,
+      numbersOnly: true,
     },
   },
 ];

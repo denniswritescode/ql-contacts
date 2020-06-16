@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-
 export interface IContact {
   _id: string;
   index: number;
@@ -31,4 +29,6 @@ export interface IQLFormInputValidation {
   number?: boolean;
   minLength?: number;
   maxLength?: number;
+  pattern?: RegExp | string;
+  numbersOnly?: boolean;
 }

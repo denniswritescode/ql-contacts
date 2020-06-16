@@ -1,19 +1,25 @@
 <mat-form-field class="full-width">
+
   <mat-label>{{name}}</mat-label>
+
   <input
     [formControl]="con"
     [(ngModel)]="model"
     (ngModelChange)="modelChange.emit(model)"
     matInput
-    placeholder=""
-    value="">
+    placeholder="{{placeholder}}"
+    value="{{model}}">
+
   <mat-icon matSuffix>alternate_email</mat-icon>
+
   <mat-error *ngIf="con.hasError('required')">
-    {{name}} is <strong>required.</strong>
+    {{name}} is <strong>required</strong>
   </mat-error>
+
   <mat-error
     *ngIf="con.hasError('email') && !con.hasError('required')">
-    Please enter a valid email address.
+    please enter a valid email address
   </mat-error>
+
 </mat-form-field>
 

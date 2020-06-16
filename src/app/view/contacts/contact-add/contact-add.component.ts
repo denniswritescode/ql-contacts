@@ -28,6 +28,7 @@ export class ContactAddComponent implements OnInit {
       ContactFormComponent,
       {
         width: this.viewport.mobile() ? '80vw' : '50vw',
+        height: '80vh',
       }
     );
   }

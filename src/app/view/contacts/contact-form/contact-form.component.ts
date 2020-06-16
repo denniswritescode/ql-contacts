@@ -25,16 +25,22 @@ export class ContactFormComponent {
     return JSON.stringify(Object.fromEntries(entries), null, '  ');
   }
 
-  createContact() {
-    if (this.formValid()) {
-      console.log('FORM VALID.');
-      console.log(this.fun.$ucce$$);
-      console.log('DATA:');
-      console.log(this.serialize());
-    } else {
-      console.log('Not Valid', this.formData.map((el) => ({ key: el.key, state: el.state })));
-    }
-
+  announce() {
+    console.log('FORM VALID.');
+    console.log(this.fun.$ucce$$);
+    console.log('DATA:');
+    console.log(this.serialize());
   }
 
+  detest() {
+    console.log('Not Valid', this.formData.map((el) => ({ key: el.key, state: el.state })));
+  }
+
+  createContact() {
+    if (this.formValid()) {
+      this.announce();
+    } else {
+      this.detest();
+    }
+  }
 }

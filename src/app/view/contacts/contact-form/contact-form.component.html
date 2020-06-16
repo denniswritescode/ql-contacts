@@ -15,7 +15,8 @@
           *ngSwitchDefault
           class="contact-input"
           [name]="i.name"
-          [required]="i.validation?.required"
+          [placeholder]="i.placeholder"
+          [validation]="i.validation"
           [(state)]="i.state"
           [(model)]="i.value"></app-input-text>
 
@@ -23,7 +24,8 @@
           *ngSwitchCase="'phone'"
           class="contact-input"
           [name]="i.name"
-          [required]="i.validation?.required"
+          [placeholder]="i.placeholder"
+          [validation]="i.validation"
           [(state)]="i.state"
           [(model)]="i.value"></app-input-phone>
 
@@ -31,7 +33,8 @@
           *ngSwitchCase="'email'"
           class="contact-input"
           [name]="i.name"
-          [required]="i.validation?.required"
+          [placeholder]="i.placeholder"
+          [validation]="i.validation"
           [(state)]="i.state"
           [(model)]="i.value"></app-input-email>
 
@@ -48,7 +51,8 @@
   <button mat-button mat-dialog-close>Cancel</button>
 
   <button
-    mat-button
+    mat-raised-button
+    [disabled]="!formValid()"
     (click)="createContact()"
     color="primary">Create</button>
 

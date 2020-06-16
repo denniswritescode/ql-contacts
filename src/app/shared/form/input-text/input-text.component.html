@@ -1,13 +1,33 @@
 <mat-form-field class="full-width">
+
   <mat-label>{{name}}</mat-label>
+
   <input
     [formControl]="con"
     [(ngModel)]="model"
     (ngModelChange)="modelChange.emit(model)"
     matInput
-    placeholder="Ex. Quicken Loans"
-    value="">
+    minlength="{{validation.minLength}}"
+    maxlength="{{validation.maxLength}}"
+    placeholder="{{placeholder}}"
+    value="{{model}}">
+
+  <mat-hint *ngIf="validation.minLength || validation.maxLength" align="end">{{model.length}} / {{validation.minLength}}</mat-hint>
+
   <mat-error *ngIf="con.hasError('required')">
-    {{name}} is <strong>required.</strong>
+    {{name.toLowerCase()}} is <strong>required</strong>
   </mat-error>
+
+  <mat-error *ngIf="con.hasError('pattern') && validation.numbersOnly && !con.hasError('required')">
+    only numerical values allowed
+  </mat-error>
+
+  <mat-error *ngIf="con.hasError('minlength') && !con.hasError('pattern') && !con.hasError('required')">
+    the {{name.toLowerCase()}} is too short
+  </mat-error>
+
+  <mat-error *ngIf="con.hasError('maxlength') && !con.hasError('pattern') && !con.hasError('required')">
+    the {{name.toLowerCase()}} is too long
+  </mat-error>
+
 </mat-form-field>
