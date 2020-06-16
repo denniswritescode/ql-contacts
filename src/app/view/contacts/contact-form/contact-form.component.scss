@@ -5,6 +5,12 @@
   }
 }
 
+.mat-dialog-content {
+  .mat-spinner {
+    margin: 100px auto;
+  }
+}
+
 .mat-dialog-title {
   .mat-hint {
     display: block;

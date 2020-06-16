@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IBaseContact, IFormContact, IQLFormInput } from 'src/app/interfaces/shared.interfaces';
 import { FunTitleService } from 'src/app/services/fun-title/fun-title.service';
 import { CONTACT_FORM_CONFIG } from './contact-form.config';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contact-form',
@@ -11,11 +12,15 @@ import { CONTACT_FORM_CONFIG } from './contact-form.config';
 export class ContactFormComponent {
 
   public formData: IQLFormInput[] = CONTACT_FORM_CONFIG;
+  public isLoading = false;
 
-  constructor(private fun: FunTitleService) { }
+  constructor(
+    private fun: FunTitleService,
+    private dialogRef: MatDialogRef<ContactFormComponent>,
+  ) { }
 
   formValid() {
-    return this.formData.every(input => input.state === 'VALID');
+    return this.formData.every(input => input.state === 'VALID' || input.key === 'address2');
   }
 
   serialize() {
@@ -55,8 +60,11 @@ export class ContactFormComponent {
   }
 
   createContact() {
+    this.isLoading = true;
+
     if (this.formValid()) {
       this.announce();
+      setTimeout(() => { this.dialogRef.close('success'); }, 3000);
     } else {
       this.detest();
     }

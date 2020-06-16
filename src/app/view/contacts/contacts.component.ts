@@ -1,10 +1,13 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { IContact } from 'src/app/interfaces/shared.interfaces';
 import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
-import { IContact } from '../../interfaces/shared.interfaces';
+import { skipWhile } from 'rxjs/operators';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-contacts',
@@ -25,22 +28,48 @@ import { IContact } from '../../interfaces/shared.interfaces';
   ],
 })
 export class ContactsComponent implements OnInit, OnDestroy {
+  @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @Input() public list: MatTableDataSource<IContact> = new MatTableDataSource<IContact>();
+  @Input() public list: Observable<IContact[]>;
+  public fullList: IContact[] = [];
+  public dataSource: MatTableDataSource<IContact>;
 
+  // for showing/hiding info (based on screen size and state)
   public displayedColumns: string[] = [];
   public detailColumns: string[] = [];
   public expanded: IContact;
 
+  // for pagination
+  public pageSize = 10;
+  public pageIndex = 0;
+
   private fullColumns: string[] = [ 'fullName', 'phone', 'company', 'more' ];
   private mobileColumns: string[] = [ 'fullName' ];
-  private subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
-  constructor(public viewport: BreakpointService) { }
+  constructor(
+    public viewport: BreakpointService,
+    public changeDetector: ChangeDetectorRef,
+  ) { }
 
   ngOnInit() {
-    this.subscription = this.viewport.stateObserver
-      .subscribe(this.breakpointHandler.bind(this));
+    this.subscriptions.push(
+      this.viewport.stateObserver
+        .subscribe(this.breakpointHandler.bind(this))
+    );
+
+    this.subscriptions.push(
+      this.list
+        .pipe(skipWhile(c => !(Array.isArray(c) && c.length) ))
+        .subscribe(this.contactsHandler.bind(this))
+    );
+  }
+
+  contactsHandler(contacts) {
+    this.fullList = contacts;
+    this.dataSource = new MatTableDataSource(this.fullList);
+    this.dataSource.paginator = this.paginator;
   }
 
   breakpointHandler(breakpoint) {
@@ -60,6 +89,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 }

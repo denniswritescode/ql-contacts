@@ -3,8 +3,17 @@
 .contacts {
   color: $dark-primary-text;
 
+  .contacts-loader {
+    width: 30vw;
+    margin: 30vh auto;
+
+    .mat-spinner {
+      margin: 0 auto;
+    }
+  }
+
   table.mat-table {
-    width: 100vw;
+    width: 100%;
 
     th.mat-header-cell,
     td.mat-cell {

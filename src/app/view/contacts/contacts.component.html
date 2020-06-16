@@ -1,6 +1,13 @@
 <div class="contacts">
 
-  <table mat-table multiTemplateDataRows [dataSource]="list">
+  <div class="contacts-loader" *ngIf="!fullList.length">
+    <mat-spinner
+      color="accent"
+      diameter="50"
+    ></mat-spinner>
+  </div>
+
+  <table #qlTable mat-table multiTemplateDataRows [dataSource]="dataSource" *ngIf="fullList.length">
 
     <ng-container matColumnDef="fullName">
       <th mat-header-cell *matHeaderCellDef>
@@ -61,5 +68,11 @@
     <tr mat-row *matRowDef="let row; columns: ['expandable'];" class="expandable-row"></tr>
 
   </table>
+
+  <mat-paginator
+    [length]="fullList.length"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+  ></mat-paginator>
 
 </div>
