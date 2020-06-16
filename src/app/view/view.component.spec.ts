@@ -14,6 +14,7 @@ describe('ViewComponent', () => {
       declarations: [
         ViewComponent,
         MockComponent({ selector: 'app-header'}),
+        MockComponent({ selector: 'app-contact-header'}),
         MockComponent({ selector: 'app-contacts', inputs: [ 'list' ]}),
         MockComponent({ selector: 'app-footer'}),
       ],

@@ -6,7 +6,7 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     key: 'company',
     placeholder: 'Ex. Google Inc.',
     type: 'text',
-    value: '',
+    value: 'Brillnt',
     state: '',
     validation: {
       required: true,

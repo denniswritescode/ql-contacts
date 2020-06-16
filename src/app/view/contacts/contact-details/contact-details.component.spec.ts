@@ -1,3 +1,4 @@
+import { MockComponent } from 'ng2-mock-component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactDetailsComponent } from './contact-details.component';
@@ -8,7 +9,13 @@ describe('ContactDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactDetailsComponent ],
+      declarations: [
+        ContactDetailsComponent,
+        MockComponent({
+          selector: 'app-detail-item',
+          inputs: [ 'icon', 'label', 'value' ],
+        }),
+      ],
     })
     .compileComponents();
   }));

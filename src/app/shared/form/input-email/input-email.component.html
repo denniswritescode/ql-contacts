@@ -4,11 +4,8 @@
 
   <input
     [formControl]="con"
-    [(ngModel)]="model"
-    (ngModelChange)="modelChange.emit(model)"
     matInput
-    placeholder="{{placeholder}}"
-    value="{{model}}">
+    placeholder="{{placeholder}}" />
 
   <mat-icon matSuffix>alternate_email</mat-icon>
 

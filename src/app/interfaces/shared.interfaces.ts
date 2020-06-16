@@ -1,12 +1,22 @@
-export interface IContact {
-  _id: string;
-  index: number;
+export interface IBaseContact {
   firstName: string;
   lastName: string;
   company: string;
   email: string;
   phone: string;
   address: string;
+}
+
+export interface IContact extends IBaseContact {
+  _id: string;
+  index: number;
+}
+
+export interface IFormContact extends IBaseContact {
+  address2: string;
+  city: string;
+  state: string;
+  zipCode: string;
 }
 
 export interface IQLFormInput {

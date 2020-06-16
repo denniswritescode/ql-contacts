@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactHeaderComponent } from './contact-header.component';
+import { MockComponent } from 'ng2-mock-component';
 
 describe('ContactHeaderComponent', () => {
   let component: ContactHeaderComponent;
@@ -8,7 +9,10 @@ describe('ContactHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactHeaderComponent ],
+      declarations: [
+        ContactHeaderComponent,
+        MockComponent({ selector: 'app-contact-add'}),
+      ],
     })
     .compileComponents();
   }));

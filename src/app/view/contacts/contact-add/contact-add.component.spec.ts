@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { MatDialog } from '@angular/material/dialog';
 import { ContactAddComponent } from './contact-add.component';

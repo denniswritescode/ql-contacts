@@ -50,6 +50,11 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
         icon: 'perm_phone_msg',
         value: this.contact.phone,
       },
+      {
+        label: 'Company Name',
+        icon: 'business_center',
+        value: this.contact.company,
+      },
     ];
 
     this.subscription = this.viewport.stateObserver

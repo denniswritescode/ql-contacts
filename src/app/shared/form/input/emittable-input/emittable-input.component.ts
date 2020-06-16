@@ -17,8 +17,8 @@ import { IQLFormInputValidation } from 'src/app/interfaces/shared.interfaces';
 export abstract class EmittableInputComponent implements OnInit {
 
   // Two-way bound value of the input.
-  @Input() model: string;
-  @Output() modelChange = new EventEmitter<string>();
+  @Input() value: string;
+  @Output() valueChange = new EventEmitter<string>();
 
   // Two-way bound value of the input's status/state.
   @Input() state: string;
@@ -37,9 +37,12 @@ export abstract class EmittableInputComponent implements OnInit {
     this.passedValidation();
     this.extendedValidation();
 
-    this.con = new FormControl('', this.validators);
+    this.con = new FormControl(this.value, this.validators);
     this.con.statusChanges
       .subscribe(this.updateState.bind(this));
+
+    this.con.valueChanges
+      .subscribe(this.updateValue.bind(this));
   }
 
   private passedValidation() {
@@ -65,6 +68,10 @@ export abstract class EmittableInputComponent implements OnInit {
   }
 
   abstract extendedValidation();
+
+  updateValue(value) {
+    this.valueChange.emit(this.con.value);
+  }
 
   updateState(state) {
     this.state = state;

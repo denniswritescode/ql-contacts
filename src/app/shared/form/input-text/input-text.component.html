@@ -4,15 +4,12 @@
 
   <input
     [formControl]="con"
-    [(ngModel)]="model"
-    (ngModelChange)="modelChange.emit(model)"
     matInput
     minlength="{{validation.minLength}}"
     maxlength="{{validation.maxLength}}"
-    placeholder="{{placeholder}}"
-    value="{{model}}">
+    placeholder="{{placeholder}}" />
 
-  <mat-hint *ngIf="validation.minLength || validation.maxLength" align="end">{{model.length}} / {{validation.minLength}}</mat-hint>
+  <mat-hint *ngIf="validation.minLength || validation.maxLength" align="end">{{value.length}} / {{validation.minLength}}</mat-hint>
 
   <mat-error *ngIf="con.hasError('required')">
     {{name.toLowerCase()}} is <strong>required</strong>

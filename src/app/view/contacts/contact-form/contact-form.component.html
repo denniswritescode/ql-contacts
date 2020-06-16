@@ -18,7 +18,7 @@
           [placeholder]="i.placeholder"
           [validation]="i.validation"
           [(state)]="i.state"
-          [(model)]="i.value"></app-input-text>
+          [(value)]="i.value"></app-input-text>
 
         <app-input-phone
           *ngSwitchCase="'phone'"
@@ -27,7 +27,7 @@
           [placeholder]="i.placeholder"
           [validation]="i.validation"
           [(state)]="i.state"
-          [(model)]="i.value"></app-input-phone>
+          [(value)]="i.value"></app-input-phone>
 
         <app-input-email
           *ngSwitchCase="'email'"
@@ -36,7 +36,7 @@
           [placeholder]="i.placeholder"
           [validation]="i.validation"
           [(state)]="i.state"
-          [(model)]="i.value"></app-input-email>
+          [(value)]="i.value"></app-input-email>
 
       </div>
 

@@ -17,6 +17,14 @@
       font-size: 1.4em;
     }
 
+    th.mat-header-cell.mat-column-fullName {
+      .mat-hint {
+        float: right;
+        font-size: 13px;
+        margin-right: 24px;
+      }
+    }
+
     i.material-icons {
       position: relative;
       top: 7px;

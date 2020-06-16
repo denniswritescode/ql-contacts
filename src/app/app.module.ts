@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PhonePipe } from './pipes/phone.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { FooterComponent } from './shared/footer/footer.component';
 import { InputEmailComponent } from './shared/form/input-email/input-email.component';
 import { InputPhoneComponent } from './shared/form/input-phone/input-phone.component';
@@ -24,11 +25,11 @@ import { InputTextComponent } from './shared/form/input-text/input-text.componen
 import { HeaderComponent } from './shared/header/header.component';
 import { ContactAddComponent } from './view/contacts/contact-add/contact-add.component';
 import { ContactDetailsComponent } from './view/contacts/contact-details/contact-details.component';
+import { DetailItemComponent } from './view/contacts/contact-details/detail-item/detail-item.component';
 import { ContactFormComponent } from './view/contacts/contact-form/contact-form.component';
 import { ContactHeaderComponent } from './view/contacts/contact-header/contact-header.component';
 import { ContactsComponent } from './view/contacts/contacts.component';
 import { ViewComponent } from './view/view.component';
-import { DetailItemComponent } from './view/contacts/contact-details/detail-item/detail-item.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DetailItemComponent } from './view/contacts/contact-details/detail-item
     InputEmailComponent,
     InputPhoneComponent,
     DetailItemComponent,
+    TruncatePipe,
   ],
   entryComponents: [
     ContactFormComponent,

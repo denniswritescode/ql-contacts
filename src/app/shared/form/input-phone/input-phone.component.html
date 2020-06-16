@@ -7,15 +7,12 @@
   <input
     maxlength="10"
     [formControl]="con"
-    [(ngModel)]="model"
-    (ngModelChange)="modelChange.emit(model)"
     matInput
-    placeholder="{{placeholder}}"
-    value="{{model}}">
+    placeholder="{{placeholder}}" />
 
   <mat-icon matSuffix>perm_phone_msg</mat-icon>
 
-  <mat-hint align="end">{{model.length}} / 10</mat-hint>
+  <mat-hint align="end">{{value.length}} / 10</mat-hint>
 
   <mat-error *ngIf="con.hasError('required')">
     {{name.toLowerCase()}} is <strong>required</strong>

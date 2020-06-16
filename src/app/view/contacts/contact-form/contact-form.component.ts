@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IQLFormInput } from './../../../interfaces/shared.interfaces';
-
+import { IBaseContact, IFormContact, IQLFormInput } from 'src/app/interfaces/shared.interfaces';
 import { FunTitleService } from 'src/app/services/fun-title/fun-title.service';
 import { CONTACT_FORM_CONFIG } from './contact-form.config';
 
@@ -22,7 +21,26 @@ export class ContactFormComponent {
   serialize() {
     const entries = new Map(this.formData.map((el) => [ el.key, el.value ]));
     // @ts-ignore
-    return JSON.stringify(Object.fromEntries(entries), null, '  ');
+    const payload = this.prepare(Object.fromEntries(entries));
+
+    return JSON.stringify(payload, null, '  ');
+  }
+
+  prepare(obj: IFormContact): IBaseContact {
+    const addressArray = [ obj.address, obj.city, obj.state, obj.zipCode ];
+
+    if (obj.address2) {
+      addressArray.splice(1, 0, obj.address2);
+    }
+
+    obj.address = addressArray.join(', ');
+
+    delete obj.address2;
+    delete obj.city;
+    delete obj.state;
+    delete obj.zipCode;
+
+    return obj;
   }
 
   announce() {
