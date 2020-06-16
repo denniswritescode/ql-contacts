@@ -17,14 +17,14 @@ describe('ContactDetailsComponent', () => {
     fixture = TestBed.createComponent(ContactDetailsComponent);
     component = fixture.componentInstance;
     component.contact = {
-      "_id": "5de91c005b98615393e74931",
-      "index": 0,
-      "firstName": "Browning",
-      "lastName": "Graham",
-      "company": "MELBACOR",
-      "email": "browninggraham@melbacor.com",
-      "phone": "+1 (906) 585-2525",
-      "address": "920 Hastings Street, Roosevelt, Puerto Rico, 5573"
+      _id: '5de91c005b98615393e74931',
+      index: 0,
+      firstName: 'Browning',
+      lastName: 'Graham',
+      company: 'MELBACOR',
+      email: 'browninggraham@melbacor.com',
+      phone: '+1 (906) 585-2525',
+      address: '920 Hastings Street, Roosevelt, Puerto Rico, 5573'
     };
     fixture.detectChanges();
   });

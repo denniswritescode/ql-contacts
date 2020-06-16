@@ -2,7 +2,7 @@
  * Using architecture of mock classes and testing patterns from:
  * https://github.com/angular/components/blob/master/src/cdk/layout/breakpoints-observer.spec.ts#L184
  */
-
+/* tslint:disable */
 export class FakeMediaQueryList {
   /** The callback for change events. */
   private _listeners: ((mql: MediaQueryListEvent) => void)[] = [];

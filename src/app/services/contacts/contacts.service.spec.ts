@@ -1,10 +1,10 @@
 import { async } from '@angular/core/testing';
-import { defer }from 'rxjs';
-import { skipWhile }from 'rxjs/operators';
+import { defer } from 'rxjs';
+import { skipWhile } from 'rxjs/operators';
 
-import { ContactsService } from './contacts.service';
-import { EnvironmentService } from '../environment/environment.service';
 import { EnvironmentTestService } from '../environment/environment-test.service';
+import { EnvironmentService } from '../environment/environment.service';
+import { ContactsService } from './contacts.service';
 
 
 function asyncData<T>(data: T) {
@@ -14,7 +14,7 @@ function asyncData<T>(data: T) {
 describe('ContactsService', () => {
   let service: ContactsService;
   let httpClientSpy: { get: jasmine.Spy };
-  let mock: any = require('../../testing/responses/contacts.json');
+  const mock: any = require('../../testing/responses/contacts.json');
 
   beforeEach(() => {
 
@@ -22,7 +22,7 @@ describe('ContactsService', () => {
     httpClientSpy.get.and.returnValue(asyncData(mock));
 
     service = new ContactsService(
-      <any> httpClientSpy,
+      httpClientSpy as any,
       new EnvironmentTestService() as EnvironmentService
     );
     spyOn(service, 'get').and.callThrough();
@@ -39,7 +39,7 @@ describe('ContactsService', () => {
   });
 
   it('should load the correct data', async(() => {
-    let dataChecker = (data) => {
+    const dataChecker = (data) => {
       expect(Array.isArray(data)).toBeTrue();
       expect(data.length).toBe(2);
     };

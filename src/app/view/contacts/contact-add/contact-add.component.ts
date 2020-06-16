@@ -1,6 +1,6 @@
-import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
 
 import { ContactFormComponent } from '../contact-form/contact-form.component';
 
@@ -21,7 +21,7 @@ export class ContactAddComponent implements OnInit {
     this.openContactForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   openContactForm() {
     const dialogRef = this.dialog.open(

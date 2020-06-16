@@ -6,7 +6,7 @@ describe('EnvironmentService', () => {
   let service: EnvironmentService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ });
     service = TestBed.inject(EnvironmentService);
   });
 

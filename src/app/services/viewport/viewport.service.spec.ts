@@ -1,8 +1,8 @@
-import { TestBed, fakeAsync, flush, inject, tick } from '@angular/core/testing';
+import { fakeAsync, flush, inject, tick, TestBed } from '@angular/core/testing';
 import { FakeMediaMatcher } from '../../testing/media-matcher.fake';
 
-import { ViewportService } from './viewport.service';
 import { BreakpointObserver, LayoutModule, MediaMatcher } from '@angular/cdk/layout';
+import { ViewportService } from './viewport.service';
 
 describe('ViewportService', () => {
   let service: ViewportService;

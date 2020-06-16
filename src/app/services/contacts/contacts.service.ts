@@ -1,30 +1,30 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { EnvironmentService } from '../environment/environment.service';
 import { IContact } from '../../interfaces/shared.interfaces';
+import { EnvironmentService } from '../environment/environment.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
-  private _contacts: BehaviorSubject<IContact[] | []> = new BehaviorSubject([]); 
+  private subject: BehaviorSubject<IContact[] | []> = new BehaviorSubject([]);
 
-  public readonly contacts: Observable<IContact[] | []> = this._contacts.asObservable();
+  public readonly contacts: Observable<IContact[] | []> = this.subject.asObservable();
 
   constructor(
     private http: HttpClient,
     private env: EnvironmentService,
-  ) {}
+  ) { }
 
   load(): Observable<IContact[] | []> {
     this.get()
       .subscribe((data: IContact[]) => {
-        this._contacts.next(data);
+        this.subject.next(data);
       });
 
-      return this.contacts;
+    return this.contacts;
   }
 
   get(): Observable<IContact[]> {

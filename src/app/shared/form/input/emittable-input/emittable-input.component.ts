@@ -1,11 +1,17 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
+/*
+ * Sample Template:
+ * <input
+ *   [formControl]="con"
+ *   [(ngModel)]="model"
+ *   (ngModelChange)="modelChange.emit(model)" />
+ */
 
 @Component({
   selector: 'app-emittable-input',
-  template: `
-    <input [formControl]="con" [(ngModel)]="model" (ngModelChange)="modelChange.emit(model)" />
-  `,
+  template: ``,
 })
 export abstract class EmittableInputComponent {
 

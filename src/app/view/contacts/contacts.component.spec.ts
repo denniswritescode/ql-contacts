@@ -1,6 +1,6 @@
 
-import { FakeViewportService } from 'src/app/testing/viewport.service.fake';
 import { fakeAsync, tick } from '@angular/core/testing';
+import { FakeViewportService } from 'src/app/testing/viewport.service.fake';
 import { ContactsComponent } from './contacts.component';
 
 describe('ContactsComponent', () => {

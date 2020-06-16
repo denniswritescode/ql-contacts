@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockComponent } from 'ng2-mock-component';
 
-import { ViewComponent } from './view.component';
 import { ContactsService } from '../services/contacts/contacts.service';
+import { ViewComponent } from './view.component';
 
 describe('ViewComponent', () => {
   let component: ViewComponent;

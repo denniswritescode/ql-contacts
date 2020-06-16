@@ -2,6 +2,7 @@
  * Using architecture of mock classes and testing patterns from:
  * https://github.com/angular/components/blob/master/src/cdk/layout/breakpoints-observer.spec.ts#L215
  */
+/* tslint:disable */
 import { Injectable } from '@angular/core';
 import { FakeMediaQueryList } from './media-query-list.fake';
 

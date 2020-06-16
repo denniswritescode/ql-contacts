@@ -1,8 +1,8 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 
-import { ViewportService, BreakpointService } from 'src/app/services/viewport/viewport.service';
+import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
 import { IContact } from '../../interfaces/shared.interfaces';
 
 @Component({
@@ -17,8 +17,8 @@ import { IContact } from '../../interfaces/shared.interfaces';
   ],
   animations: [
     trigger('expand', [
-      state('expanded', style({height: '0px', minHeight: '0'})),
-      state('collapsed', style({height: '*'})),
+      state('expanded', style({ height: '0px', minHeight: '0'})),
+      state('collapsed', style({ height: '*'})),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],

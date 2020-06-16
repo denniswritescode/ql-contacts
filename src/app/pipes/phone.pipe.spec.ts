@@ -1,7 +1,7 @@
 import { inject } from '@angular/core/testing';
 
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { PhonePipe } from './phone.pipe';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser'; 
 
 
 let phone: PhonePipe;

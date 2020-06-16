@@ -14,6 +14,12 @@ export class InputTextComponent extends EmittableInputComponent {
   }
 
   createFormControl() {
-    this.con = new FormControl('', [ Validators.required ]);
+    const validators = [];
+
+    if (this.required) {
+      validators.push(Validators.required);
+    }
+
+    this.con = new FormControl('', validators);
   }
 }

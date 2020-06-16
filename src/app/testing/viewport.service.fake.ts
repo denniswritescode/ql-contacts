@@ -1,5 +1,5 @@
-import { Observable, BehaviorSubject } from 'rxjs';
 import { Breakpoints } from '@angular/cdk/layout';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BreakpointService } from 'src/app/services/viewport/viewport.service';
 
 export class FakeViewportService extends BreakpointService {
