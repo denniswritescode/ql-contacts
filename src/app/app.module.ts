@@ -7,6 +7,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,6 +27,8 @@ import { PhonePipe } from './pipes/phone.pipe';
 import { ViewComponent } from './view/view.component';
 import { InputTextComponent } from './shared/form/input-text/input-text.component';
 import { InputEmailComponent } from './shared/form/input-email/input-email.component';
+import { InputPhoneComponent } from './shared/form/input-phone/input-phone.component';
+import { EmittableInputComponent } from './shared/form/input/emittable-input/emittable-input.component';
 
 @NgModule({
   declarations: [
@@ -41,9 +44,13 @@ import { InputEmailComponent } from './shared/form/input-email/input-email.compo
     ContactFormComponent,
     InputTextComponent,
     InputEmailComponent,
+    InputPhoneComponent,
+    EmittableInputComponent,
   ],
   entryComponents: [
-    ContactFormComponent
+    ContactFormComponent,
+    InputPhoneComponent,
+    InputTextComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -55,6 +62,7 @@ import { InputEmailComponent } from './shared/form/input-email/input-email.compo
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatTableModule,
     MatToolbarModule,

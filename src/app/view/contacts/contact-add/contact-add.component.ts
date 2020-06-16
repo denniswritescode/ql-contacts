@@ -27,7 +27,7 @@ export class ContactAddComponent implements OnInit {
     const dialogRef = this.dialog.open(
       ContactFormComponent,
       {
-        width: this.viewport.mobile() ? '80vw' : '60vw'
+        width: this.viewport.mobile() ? '80vw' : '50vw'
       }
     );
   }

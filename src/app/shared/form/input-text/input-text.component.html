@@ -1,1 +1,13 @@
-<input type="text" [(ngModel)]="model" (ngModelChange)="modelChange.emit(model)"/>
+<mat-form-field class="full-width">
+  <mat-label>{{name}}</mat-label>
+  <input
+    [formControl]="con"
+    [(ngModel)]="model"
+    (ngModelChange)="modelChange.emit(model)"
+    matInput
+    placeholder="Ex. Quicken Loans"
+    value="">
+  <mat-error *ngIf="con.hasError('required')">
+    {{name}} is <strong>required.</strong>
+  </mat-error>
+</mat-form-field>

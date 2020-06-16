@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-input-email',
-  templateUrl: './input-email.component.html',
-  styleUrls: ['./input-email.component.scss']
+  selector: 'app-input-phone',
+  templateUrl: './input-phone.component.html',
+  styleUrls: ['./input-phone.component.scss']
 })
-export class InputEmailComponent extends EmittableInputComponent {
+export class InputPhoneComponent extends EmittableInputComponent {
 
   constructor() {
     super();
@@ -16,7 +16,9 @@ export class InputEmailComponent extends EmittableInputComponent {
   createFormControl() {
     this.con = new FormControl('', [
       Validators.required,
-      Validators.email
+      Validators.maxLength(10),
+      Validators.minLength(10),
+      Validators.pattern(/^[0-9]\d*$/),
     ]);
   }
 }

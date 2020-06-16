@@ -1,5 +1,7 @@
+import { IQLFormInput } from './../../../interfaces/shared.interfaces';
 import { Component } from '@angular/core';
-import { FormControl, Validators, NgForm, FormGroupDirective } from '@angular/forms';
+
+import { CONTACT_FORM_CONFIG } from './contact-form.config';
 
 @Component({
   selector: 'app-contact-form',
@@ -8,11 +10,26 @@ import { FormControl, Validators, NgForm, FormGroupDirective } from '@angular/fo
 })
 export class ContactFormComponent {
 
-  public emailControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  public formData: IQLFormInput[] = CONTACT_FORM_CONFIG;
 
-  constructor() { }
+  constructor() {}
+
+  formValid() {
+    return this.formData.every(input => input.state === 'VALID');
+  }
+
+  serialize() {
+    const entries = new Map(this.formData.map((el) => [el.key, el.value]));
+    return JSON.stringify(Object.fromEntries(entries), null, '  ');
+  }
+
+  createContact() {
+    if (this.formValid()) {
+      console.log('Form Valid', this.serialize());
+    } else {
+      console.log('Not Valid', this.formData.map((el) => ({ key: el.key, state: el.state })));
+    }
+
+  }
 
 }

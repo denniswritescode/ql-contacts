@@ -1,0 +1,24 @@
+<mat-form-field class="full-width">
+  <mat-label>{{name}}</mat-label>
+  <span matPrefix>+1 &nbsp;</span>
+  <input
+    maxlength="10"
+    [formControl]="con"
+    [(ngModel)]="model"
+    (ngModelChange)="modelChange.emit(model)"
+    matInput
+    placeholder=""
+    value="">
+  <mat-icon matSuffix>perm_phone_msg</mat-icon>
+  <mat-hint align="end">{{model.length}} / 10</mat-hint>
+  <mat-error *ngIf="con.hasError('required')">
+    {{name}} is <strong>required.</strong>
+  </mat-error>
+  <mat-error *ngIf="con.hasError('pattern')">
+    Only numerical values are allowed.
+  </mat-error>
+  <mat-error
+    *ngIf="con.hasError('maxLength') || !con.hasError('minLength') && !con.hasError('required') && !con.hasError('pattern')">
+    {{name}} must be <strong>10 digits.</strong> Currently we support American phone numbers.
+  </mat-error>
+</mat-form-field>

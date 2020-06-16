@@ -15,31 +15,30 @@
         {{contact.company}}
       </td>
     </ng-container>
-    
+
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef>Email</th>
       <td mat-cell *matCellDef="let contact">
         {{contact.email}}
       </td>
     </ng-container>
-    
+
     <ng-container matColumnDef="phone">
       <th mat-header-cell *matHeaderCellDef>Phone</th>
       <td mat-cell *matCellDef="let contact">
-        <i class="material-icons lighten">perm_phone_msg</i> 
-        <a [href]="contact.phone | phone:'link'">{{contact.phone | phone}}</a> 
+        <i class="material-icons lighten">perm_phone_msg</i>
+        <a [href]="contact.phone | phone:'link'">{{contact.phone | phone}}</a>
       </td>
     </ng-container>
-    
+
     <ng-container matColumnDef="more">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let contact">
         <button mat-button>more</button>
       </td>
     </ng-container>
-    
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    
 
     <ng-container matColumnDef="expandable">
       <td mat-cell *matCellDef="let contact" [attr.colspan]="displayedColumns.length">
@@ -49,7 +48,7 @@
       </td>
     </ng-container>
 
-    <tr 
+    <tr
       class="contact-primary"
       [class.contact-expanded]="expanded === row"
       (click)="expanded = expanded === row ? null : row"
