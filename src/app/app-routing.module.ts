@@ -7,11 +7,11 @@ const routes: Routes = [
   {
     component: ViewComponent,
     path: '',
-  }
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ],
 })
 export class AppRoutingModule { }

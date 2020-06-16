@@ -14,10 +14,10 @@ describe('ContactAddComponent', () => {
         {
           provide: MatDialog,
           useValue: {
-            open: () => { }
-          }
-        }
-      ]
+            open: () => { },
+          },
+        },
+      ],
     })
     .compileComponents();
   }));

@@ -7,7 +7,7 @@ import { ContactsService } from '../services/contacts/contacts.service';
 @Component({
   selector: 'app-main',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
+  styleUrls: [ './view.component.scss' ],
 })
 export class ViewComponent implements OnInit {
 

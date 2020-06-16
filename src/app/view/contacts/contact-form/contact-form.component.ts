@@ -7,7 +7,7 @@ import { CONTACT_FORM_CONFIG } from './contact-form.config';
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
-  styleUrls: ['./contact-form.component.scss']
+  styleUrls: [ './contact-form.component.scss' ],
 })
 export class ContactFormComponent {
 
@@ -20,7 +20,7 @@ export class ContactFormComponent {
   }
 
   serialize() {
-    const entries = new Map(this.formData.map((el) => [el.key, el.value]));
+    const entries = new Map(this.formData.map((el) => [ el.key, el.value ]));
     // @ts-ignore
     return JSON.stringify(Object.fromEntries(entries), null, '  ');
   }

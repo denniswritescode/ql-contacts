@@ -9,8 +9,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'First Name',
@@ -19,8 +19,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'Last Name',
@@ -29,8 +29,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'Phone Number',
@@ -40,8 +40,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'Email Address',
@@ -51,8 +51,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'Address',
@@ -62,8 +62,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'Address 2',
@@ -73,8 +73,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: false
-    }
+      required: false,
+    },
   },
   {
     name: 'City',
@@ -84,8 +84,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'State',
@@ -95,8 +95,8 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
   {
     name: 'Postal Code',
@@ -106,7 +106,7 @@ export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
     value: '',
     state: '',
     validation: {
-      required: true
-    }
+      required: true,
+    },
   },
 ];

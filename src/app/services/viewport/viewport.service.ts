@@ -13,7 +13,7 @@ export abstract class BreakpointService {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ViewportService extends BreakpointService {
   static readonly STATES = {

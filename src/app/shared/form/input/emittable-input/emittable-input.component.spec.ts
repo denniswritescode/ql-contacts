@@ -8,7 +8,7 @@ describe('EmittableInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmittableInputComponent ]
+      declarations: [ EmittableInputComponent ],
     })
     .compileComponents();
   }));

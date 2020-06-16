@@ -18,7 +18,7 @@ describe('ContactsService', () => {
 
   beforeEach(() => {
 
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', [ 'get' ]);
     httpClientSpy.get.and.returnValue(asyncData(mock));
 
     service = new ContactsService(

@@ -17,7 +17,7 @@ describe('HeaderComponent', () => {
         // MockComponent({ selector: 'mat-toolbar' }),
       ],
       imports: [ MatTableModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     })
     .compileComponents();
   }));

@@ -5,7 +5,7 @@ import { EmittableInputComponent } from 'src/app/shared/form/input/emittable-inp
 @Component({
   selector: 'app-input-phone',
   templateUrl: './input-phone.component.html',
-  styleUrls: ['./input-phone.component.scss']
+  styleUrls: [ './input-phone.component.scss' ],
 })
 export class InputPhoneComponent extends EmittableInputComponent {
 

@@ -14,10 +14,10 @@ describe('ViewComponent', () => {
       declarations: [
         ViewComponent,
         MockComponent({ selector: 'app-header'}),
-        MockComponent({ selector: 'app-contacts', inputs: ['list']}),
+        MockComponent({ selector: 'app-contacts', inputs: [ 'list' ]}),
         MockComponent({ selector: 'app-footer'}),
       ],
-      imports: [HttpClientTestingModule],
+      imports: [ HttpClientTestingModule ],
       providers: [ ContactsService ],
     })
     .compileComponents();

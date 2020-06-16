@@ -11,16 +11,16 @@ describe('ViewportService', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [LayoutModule],
+      imports: [ LayoutModule ],
       providers: [
-        { provide: MediaMatcher, useClass: FakeMediaMatcher }
-      ]
+        { provide: MediaMatcher, useClass: FakeMediaMatcher },
+      ],
     });
     service = TestBed.inject(ViewportService);
   }));
 
   beforeEach(inject(
-    [BreakpointObserver, MediaMatcher],
+    [ BreakpointObserver, MediaMatcher ],
     (bpo: BreakpointObserver, mm: FakeMediaMatcher) => {
       breakpointObserver = bpo;
       mediaMatcher = mm;

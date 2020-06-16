@@ -7,10 +7,10 @@ import { ContactFormComponent } from '../contact-form/contact-form.component';
 @Component({
   selector: 'app-contact-add',
   templateUrl: './contact-add.component.html',
-  styleUrls: ['./contact-add.component.scss'],
+  styleUrls: [ './contact-add.component.scss' ],
   providers: [
-    { provide: BreakpointService, useClass: ViewportService }
-  ]
+    { provide: BreakpointService, useClass: ViewportService },
+  ],
 })
 export class ContactAddComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class ContactAddComponent implements OnInit {
     const dialogRef = this.dialog.open(
       ContactFormComponent,
       {
-        width: this.viewport.mobile() ? '80vw' : '50vw'
+        width: this.viewport.mobile() ? '80vw' : '50vw',
       }
     );
   }

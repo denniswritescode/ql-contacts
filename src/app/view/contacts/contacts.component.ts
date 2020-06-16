@@ -8,12 +8,12 @@ import { IContact } from '../../interfaces/shared.interfaces';
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss'],
+  styleUrls: [ './contacts.component.scss' ],
   providers: [
     {
       provide: BreakpointService,
-      useClass: ViewportService
-    }
+      useClass: ViewportService,
+    },
   ],
   animations: [
     trigger('expand', [
@@ -31,7 +31,7 @@ export class ContactsComponent {
   public detailColumns: string[] = [];
   public expanded: IContact;
 
-  private fullColumns: string[] = [ 'fullName', 'phone', 'company', 'more'];
+  private fullColumns: string[] = [ 'fullName', 'phone', 'company', 'more' ];
   private mobileColumns: string[] = [ 'fullName' ];
 
   constructor(private viewport: BreakpointService) {

@@ -10,7 +10,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
  *   formats to: 313-555-1212
 */
 @Pipe({
-  name: 'phone'
+  name: 'phone',
 })
 export class PhonePipe implements PipeTransform {
 

@@ -5,7 +5,7 @@ import { EmittableInputComponent } from 'src/app/shared/form/input/emittable-inp
 @Component({
   selector: 'app-input-text',
   templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss']
+  styleUrls: [ './input-text.component.scss' ],
 })
 export class InputTextComponent extends EmittableInputComponent {
 

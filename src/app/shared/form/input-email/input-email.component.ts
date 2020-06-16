@@ -5,7 +5,7 @@ import { EmittableInputComponent } from 'src/app/shared/form/input/emittable-inp
 @Component({
   selector: 'app-input-email',
   templateUrl: './input-email.component.html',
-  styleUrls: ['./input-email.component.scss']
+  styleUrls: [ './input-email.component.scss' ],
 })
 export class InputEmailComponent extends EmittableInputComponent {
 
@@ -16,7 +16,7 @@ export class InputEmailComponent extends EmittableInputComponent {
   createFormControl() {
     this.con = new FormControl('', [
       Validators.required,
-      Validators.email
+      Validators.email,
     ]);
   }
 }

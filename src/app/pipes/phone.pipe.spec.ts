@@ -9,7 +9,7 @@ let sanitizer: DomSanitizer;
 
 describe('PhonePipe', () => {
 
-  beforeEach(inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
+  beforeEach(inject([ DomSanitizer ], (domSanitizer: DomSanitizer) => {
     sanitizer = domSanitizer;
     phone = new PhonePipe(sanitizer);
   }));

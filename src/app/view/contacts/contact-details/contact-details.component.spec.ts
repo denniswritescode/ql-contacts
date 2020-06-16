@@ -8,7 +8,7 @@ describe('ContactDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactDetailsComponent ]
+      declarations: [ ContactDetailsComponent ],
     })
     .compileComponents();
   }));
@@ -24,7 +24,7 @@ describe('ContactDetailsComponent', () => {
       company: 'MELBACOR',
       email: 'browninggraham@melbacor.com',
       phone: '+1 (906) 585-2525',
-      address: '920 Hastings Street, Roosevelt, Puerto Rico, 5573'
+      address: '920 Hastings Street, Roosevelt, Puerto Rico, 5573',
     };
     fixture.detectChanges();
   });

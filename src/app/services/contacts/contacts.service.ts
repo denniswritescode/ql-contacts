@@ -6,7 +6,7 @@ import { IContact } from '../../interfaces/shared.interfaces';
 import { EnvironmentService } from '../environment/environment.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContactsService {
   private subject: BehaviorSubject<IContact[] | []> = new BehaviorSubject([]);

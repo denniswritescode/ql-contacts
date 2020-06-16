@@ -8,7 +8,7 @@ describe('InputPhoneComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputPhoneComponent ]
+      declarations: [ InputPhoneComponent ],
     })
     .compileComponents();
   }));

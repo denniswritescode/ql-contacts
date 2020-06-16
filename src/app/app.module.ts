@@ -67,6 +67,6 @@ import { ViewComponent } from './view/view.component';
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ],
 })
 export class AppModule { }
