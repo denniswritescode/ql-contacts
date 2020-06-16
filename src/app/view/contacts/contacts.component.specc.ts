@@ -2,8 +2,6 @@
 import { fakeAsync, tick } from '@angular/core/testing';
 import { FakeViewportService } from 'src/app/testing/viewport.service.fake';
 import { ContactsComponent } from './contacts.component';
-import { ContactHeaderComponent } from 'src/app/view/contacts/contact-header/contact-header.component';
-import { MatTableModule } from '@angular/material/table';
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;

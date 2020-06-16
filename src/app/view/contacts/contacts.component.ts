@@ -1,13 +1,13 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
-import { Subscription, Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { skipWhile } from 'rxjs/operators';
 import { IContact } from 'src/app/interfaces/shared.interfaces';
 import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
-import { skipWhile } from 'rxjs/operators';
-import { PageEvent } from '@angular/material/paginator';
+import { CONTACT_TABLE_CONFIG } from './contacts-table.config';
 
 @Component({
   selector: 'app-contacts',
@@ -32,25 +32,21 @@ export class ContactsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   @Input() public list: Observable<IContact[]>;
-  public fullList: IContact[] = [];
   public dataSource: MatTableDataSource<IContact>;
+  public dataLength: number;
 
   // for showing/hiding info (based on screen size and state)
   public displayedColumns: string[] = [];
   public detailColumns: string[] = [];
   public expanded: IContact;
 
-  // for pagination
-  public pageSize = 10;
-  public pageIndex = 0;
-
-  private fullColumns: string[] = [ 'fullName', 'phone', 'company', 'more' ];
-  private mobileColumns: string[] = [ 'fullName' ];
-  private subscriptions: Subscription[] = [];
+  public tableConfig = CONTACT_TABLE_CONFIG;
+  public fullColumns: string[] = [ 'name', 'phone', 'company', 'more' ];
+  public mobileColumns: string[] = [ 'name' ];
+  public subscriptions: Subscription[] = [];
 
   constructor(
     public viewport: BreakpointService,
-    public changeDetector: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
@@ -67,8 +63,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   contactsHandler(contacts) {
-    this.fullList = contacts;
-    this.dataSource = new MatTableDataSource(this.fullList);
+    this.dataLength = contacts.length;
+    this.dataSource = new MatTableDataSource(contacts);
     this.dataSource.paginator = this.paginator;
   }
 
@@ -78,6 +74,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
     } else {
       this.setFullLayout();
     }
+  }
+
+  mobile() {
+    return this.viewport.mobile();
   }
 
   setMobileLayout() {

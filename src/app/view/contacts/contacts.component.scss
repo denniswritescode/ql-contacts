@@ -34,33 +34,23 @@
       }
     }
 
-    i.material-icons {
-      position: relative;
-      top: 7px;
-      margin-right: 12px;
-
-      &.lighten {
-        color: lighten($color: #000000, $amount: 87);
-      }
-    }
 
     .mat-column-phone,
     .mat-column-more {
       text-align: center;
     }
 
-    .mat-column-phone {
-      a {
-        color: $accent;
+    .mat-column-more {
+      .show-more {
+        position: relative;
+        top: 5px;
+        color: lighten($color: $primary, $amount: 30);
       }
     }
 
-    .mat-cell.mat-column-fullName {
-      font-size: 1.1em;
-
-      .mat-hint {
-        float: right;
-        margin-right: 24px;
+    .mat-column-phone {
+      a {
+        color: $accent;
       }
     }
 
@@ -85,7 +75,7 @@
       }
 
       .mat-cell.mat-column-expandable {
-        background-color: darken($color: white, $amount: 2);
+        background-color: lighten($color: $primary, $amount: 50);
 
         .contact-expandable {
           overflow: hidden;

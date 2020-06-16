@@ -33,6 +33,9 @@ import { ContactFormComponent } from './view/contacts/contact-form/contact-form.
 import { ContactHeaderComponent } from './view/contacts/contact-header/contact-header.component';
 import { ContactsComponent } from './view/contacts/contacts.component';
 import { ViewComponent } from './view/view.component';
+import { NameCellComponent } from './view/contacts/contact-cells/name-cell/name-cell.component';
+import { NameHeaderComponent } from './view/contacts/contact-cells/name-header/name-header.component';
+import { PhoneCellComponent } from './view/contacts/contact-cells/phone-cell/phone-cell.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { ViewComponent } from './view/view.component';
     InputPhoneComponent,
     DetailItemComponent,
     TruncatePipe,
+    NameCellComponent,
+    NameHeaderComponent,
+    PhoneCellComponent,
   ],
   entryComponents: [
     ContactFormComponent,
