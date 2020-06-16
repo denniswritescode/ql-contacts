@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MockComponent } from 'ng2-mock-component';
 
 import { ContactFormComponent } from './contact-form.component';
@@ -25,6 +25,11 @@ describe('ContactFormComponent', () => {
           inputs: [ 'name', 'value', 'placeholder', 'state', 'validation' ],
         }),
         MockComponent({ selector: 'mat-hint' }),
+      ],
+      providers: [
+        {
+          provide: MatDialogRef, useValue: { close: () => { } },
+        },
       ],
       imports: [
         MatDialogModule,

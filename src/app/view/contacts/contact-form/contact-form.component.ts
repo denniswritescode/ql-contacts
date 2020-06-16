@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { IBaseContact, IFormContact, IQLFormInput } from 'src/app/interfaces/shared.interfaces';
 import { FunTitleService } from 'src/app/services/fun-title/fun-title.service';
 import { CONTACT_FORM_CONFIG } from './contact-form.config';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contact-form',
