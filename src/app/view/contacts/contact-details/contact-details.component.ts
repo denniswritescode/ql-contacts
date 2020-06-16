@@ -10,6 +10,14 @@ export class ContactDetailsComponent implements OnInit {
 
   @Input() contact: IContact;
 
+  public details = [
+    {
+      label: 'Email',
+      icon: 'email',
+      value: this.contact.email,
+    },
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

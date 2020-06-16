@@ -28,6 +28,7 @@ import { ContactFormComponent } from './view/contacts/contact-form/contact-form.
 import { ContactHeaderComponent } from './view/contacts/contact-header/contact-header.component';
 import { ContactsComponent } from './view/contacts/contacts.component';
 import { ViewComponent } from './view/view.component';
+import { DetailItemComponent } from './view/contacts/contact-details/detail-item/detail-item.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ViewComponent } from './view/view.component';
     InputTextComponent,
     InputEmailComponent,
     InputPhoneComponent,
+    DetailItemComponent,
   ],
   entryComponents: [
     ContactFormComponent,
