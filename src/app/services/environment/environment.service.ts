@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class EnvironmentService {
-  public readonly APIURL: string = 'http://demo5838836.mockable.io/';
-  public readonly API2URL: string = 'http://demo4924906.mockable.io/';
+  public readonly APIURL: string = 'https://demo5838836.mockable.io/';
+  public readonly API2URL: string = 'https://demo4924906.mockable.io/';
 }
