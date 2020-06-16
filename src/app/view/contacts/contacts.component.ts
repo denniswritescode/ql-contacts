@@ -1,7 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { Subscription } from 'rxjs';
 import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
 import { IContact } from '../../interfaces/shared.interfaces';
 
@@ -23,19 +24,22 @@ import { IContact } from '../../interfaces/shared.interfaces';
     ]),
   ],
 })
-export class ContactsComponent {
+export class ContactsComponent implements OnInit, OnDestroy {
 
   @Input() public list: MatTableDataSource<IContact> = new MatTableDataSource<IContact>();
 
-  public displayedColumns: string[];
+  public displayedColumns: string[] = [];
   public detailColumns: string[] = [];
   public expanded: IContact;
 
   private fullColumns: string[] = [ 'fullName', 'phone', 'company', 'more' ];
   private mobileColumns: string[] = [ 'fullName' ];
+  private subscription: Subscription;
 
-  constructor(private viewport: BreakpointService) {
-    viewport.stateObserver
+  constructor(public viewport: BreakpointService) { }
+
+  ngOnInit() {
+    this.subscription = this.viewport.stateObserver
       .subscribe(this.breakpointHandler.bind(this));
   }
 
@@ -53,5 +57,9 @@ export class ContactsComponent {
 
   setFullLayout() {
     this.displayedColumns = this.fullColumns;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

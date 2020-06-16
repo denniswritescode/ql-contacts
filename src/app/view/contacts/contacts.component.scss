@@ -16,7 +16,7 @@
     th.mat-header-cell {
       font-size: 1.4em;
     }
-    
+
     i.material-icons {
       position: relative;
       top: 7px;
@@ -40,6 +40,11 @@
 
     .mat-cell.mat-column-fullName {
       font-size: 1.1em;
+
+      .mat-hint {
+        float: right;
+        margin-right: 24px;
+      }
     }
 
     .contact-primary {

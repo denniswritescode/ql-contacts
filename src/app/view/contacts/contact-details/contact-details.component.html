@@ -1,20 +1,8 @@
 <div class="contact-details">
 
   <app-detail-item
-    [icon]="'email'"
-    [label]="'Email'"
-    [value]="contact.email"></app-detail-item>
-
-  <div class="detail">
-    <div class="icon">
-      <i class="material-icons">location_on</i>
-    </div>
-    <div class="info">
-      <div class="info-value">
-        {{contact.address}}
-      </div>
-      <div class="info-label">
-        Address
-      </div>
-    </div>
+    *ngFor="let item of displayedItems"
+    [icon]="item.icon"
+    [label]="item.label"
+    [value]="item.value"></app-detail-item>
 </div>

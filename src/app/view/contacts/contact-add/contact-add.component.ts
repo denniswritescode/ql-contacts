@@ -17,9 +17,7 @@ export class ContactAddComponent implements OnInit {
   constructor(
     private viewport: BreakpointService,
     public dialog: MatDialog,
-  ) {
-    this.openContactForm();
-  }
+  ) { }
 
   ngOnInit() { }
 
