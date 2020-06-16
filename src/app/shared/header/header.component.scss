@@ -1,0 +1,11 @@
+@import '../../../scss/variables';
+.mat-toolbar {
+  .remaining-space {
+    flex: 1 1 auto;
+  }
+
+  a {
+    color: lighten($color: $primary, $amount: 35);
+    font-size: .7em;
+  }
+}
