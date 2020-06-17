@@ -27,15 +27,15 @@ import { InputPhoneComponent } from './shared/form/input-phone/input-phone.compo
 import { InputTextComponent } from './shared/form/input-text/input-text.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ContactAddComponent } from './view/contacts/contact-add/contact-add.component';
+import { NameCellComponent } from './view/contacts/contact-cells/name-cell/name-cell.component';
+import { NameHeaderComponent } from './view/contacts/contact-cells/name-header/name-header.component';
+import { PhoneCellComponent } from './view/contacts/contact-cells/phone-cell/phone-cell.component';
 import { ContactDetailsComponent } from './view/contacts/contact-details/contact-details.component';
 import { DetailItemComponent } from './view/contacts/contact-details/detail-item/detail-item.component';
 import { ContactFormComponent } from './view/contacts/contact-form/contact-form.component';
 import { ContactHeaderComponent } from './view/contacts/contact-header/contact-header.component';
 import { ContactsComponent } from './view/contacts/contacts.component';
 import { ViewComponent } from './view/view.component';
-import { NameCellComponent } from './view/contacts/contact-cells/name-cell/name-cell.component';
-import { NameHeaderComponent } from './view/contacts/contact-cells/name-header/name-header.component';
-import { PhoneCellComponent } from './view/contacts/contact-cells/phone-cell/phone-cell.component';
 
 @NgModule({
   declarations: [

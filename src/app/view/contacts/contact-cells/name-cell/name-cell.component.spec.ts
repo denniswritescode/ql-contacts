@@ -8,7 +8,7 @@ describe('NameCellComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NameCellComponent ]
+      declarations: [ NameCellComponent ],
     })
     .compileComponents();
   }));

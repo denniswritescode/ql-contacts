@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContactHeaderComponent } from './contact-header.component';
 import { MockComponent } from 'ng2-mock-component';
+import { ContactHeaderComponent } from './contact-header.component';
 
 describe('ContactHeaderComponent', () => {
   let component: ContactHeaderComponent;

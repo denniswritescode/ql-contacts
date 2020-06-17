@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of, Observable } from 'rxjs';
@@ -16,7 +16,7 @@ describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let viewport: FakeViewportService;
   let fixture: ComponentFixture<ContactsComponent>;
-  let oneContact: IContact = {
+  const oneContact: IContact = {
     _id: '5de91c005b98615393e74931',
     index: 0,
     firstName: 'Browning',
