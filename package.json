@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:network": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "build:gh": "ng build --prod --output-path docs --base-href /ql-contacts/ && cp docs/index.html docs/404.html",
     "test": "ng test --codeCoverage=true",
