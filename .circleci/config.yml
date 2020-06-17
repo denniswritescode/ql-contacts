@@ -3,7 +3,7 @@ version: 2.1
 defaults: &defaults
   docker: # use the Docker executor
     # CircleCI node images available at: https://hub.docker.com/r/circleci/node/
-    - image: circleci/node:10.0-browsers
+    - image: circleci/node:12.18-browsers
       
 jobs:
   build-and-test:
