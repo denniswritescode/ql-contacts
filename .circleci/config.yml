@@ -20,16 +20,38 @@ jobs:
   unit-tests:
     <<: *defaults
     steps:
-      - attach_workspace:
+      - attach_workspace
           at: '.'
       - run:
           name: 'Run Unit Tests'
           command: |
             npm run test:ci
+  code-linting:
+    <<: *defaults
+    steps:
+      - attach_workspace
+          at: '.'
+      - run:
+          name: 'Run Linting Checks'
+          command: |
+            npm run lint
+  end-to-end-tests:
+    <<: *defaults
+    steps:
+      - attach_workspace
+          at: '.'
+      - run:
+          name: 'Run E2E Tests'
+          command: |
+            npm run e2e
 
 workflows:
     build-and-test:
       jobs:
         - build
         - unit-tests:
+            requires: [ build ]
+        - code-linting:
+            requires: [ build ]
+        - end-to-end-tests:
             requires: [ build ]
