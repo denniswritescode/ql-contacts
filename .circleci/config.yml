@@ -1,0 +1,25 @@
+version: 2.1
+
+defaults: &defaults
+  docker: # use the Docker executor
+    # CircleCI node images available at: https://hub.docker.com/r/circleci/node/
+    - image: circleci/node:12.18-browsers
+      
+jobs:
+  build-and-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: 'Run Installations'
+          command: |
+            npm install
+      - run:
+          name: 'Run Unit Tests'
+          command: |
+            npm run test:ci
+      
+workflows:
+    build-and-test:
+      jobs:
+        - build-and-test
