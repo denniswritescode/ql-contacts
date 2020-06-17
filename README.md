@@ -1,8 +1,28 @@
 # QL Contacts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+An applicaton prototype for keeping track of your contacts!
 
-Further, it was developed with node v12.18.0 and npm version v6.14.4.
+<img width="800" alt="Screen Shot 2020-06-17 at 12 44 00 PM" src="https://user-images.githubusercontent.com/1278529/84925696-4bb6a500-b098-11ea-8241-03714c98cab7.png">
+
+# Fun Facts
+
+Here are some other fun facts for the QL team to chew on.
+
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+- Further, it was developed with node v12.18.0 and npm version v6.14.4.
+- I choose to use Angular Material stylings and modules.
+- The code test provided a [specific API endpoint which returned 5 records](https://github.com/dennisporterjr/ql-contacts/blob/master/src/app/services/environment/environment.service.ts#L7), for development I created another endpoint that [returns 95 records](https://demo4924906.mockable.io/contact) so that I could work on pagination functionality.
+- The application is live on [GitHub Pages](https://dennisporterjr.github.io/ql-contacts/) (mobile friendly)!
+- The application is integrated with CircleCI [![dennisporterjr](https://circleci.com/gh/dennisporterjr/ql-contacts.svg?style=svg)](https://circleci.com/gh/dennisporterjr/ql-contacts).
+- The application has 100% unit test coverage (across functions, statements, and branches)! (click the circle ci badge 🙂)
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Angular generated content below :)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## Development server
 
