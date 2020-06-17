@@ -17,7 +17,7 @@ jobs:
       - run:
           name: 'Run Unit Tests'
           command: |
-            npm test
+            npm test:ci
       
 workflows:
     build-and-test:
