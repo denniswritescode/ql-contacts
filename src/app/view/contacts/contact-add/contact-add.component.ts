@@ -24,7 +24,6 @@ export class ContactAddComponent implements OnInit {
   ngOnInit() { }
 
   openContactForm() {
-    debugger;
     const dialogRef = this.dialog.open(
       ContactFormComponent,
       {
