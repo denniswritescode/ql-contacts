@@ -20,7 +20,7 @@ jobs:
   unit-tests:
     <<: *defaults
     steps:
-      - attach_workspace
+      - attach_workspace:
           at: '.'
       - run:
           name: 'Run Unit Tests'
