@@ -146,6 +146,15 @@ describe('ContactFormComponent', () => {
       expect(component.detest).not.toHaveBeenCalled();
     });
 
+    it('should know when the form is valid', () => {
+      component.formData = CONTACT_SAMPLE_FORM_DATA;
+      expect(component.formValid()).toBeTruthy();
+
+      component.formData[2].state = 'INVALID';
+
+      expect(component.formValid()).toBeFalsy();
+    });
+
     // Due to the timeout, this test is unreliable. Should be tested via e2e
 
     // it('should close the dialog with success message after 3 seconds',
