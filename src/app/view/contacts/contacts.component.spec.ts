@@ -37,11 +37,17 @@ describe('ContactsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ContactsComponent,
+        // we're testing top-level functionality of the contacts component...
+        // the components below will be tested in their own specs. (or they are
+        // small third party components whose code doesn't need to be "double tested"
+        // by us. So we mock them.)
         MockComponent({ selector: 'app-contact-details', inputs: [ 'contact' ] }),
         MockComponent({ selector: 'app-name-cell', inputs: [ 'contact', 'mobile' ] }),
         MockComponent({ selector: 'app-name-header', inputs: [ 'mobile' ] }),
         MockComponent({ selector: 'app-phone-cell', inputs: [ 'phone' ] }),
         MockComponent({ selector: 'mat-icon' }),
+        MockComponent({ selector: 'mat-spinner' }),
+        MockComponent({ selector: 'mat-paginator', inputs: [ 'length', 'pageSize', 'pageIndex' ] }),
         PhonePipe,
         TruncatePipe,
       ],
