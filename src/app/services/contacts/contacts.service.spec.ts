@@ -25,7 +25,6 @@ describe('ContactsService', () => {
       httpClientSpy as any,
       new EnvironmentTestService() as EnvironmentService
     );
-    spyOn(service, 'get').and.callThrough();
   });
 
   it('should be created', () => {
@@ -33,8 +32,7 @@ describe('ContactsService', () => {
   });
 
   it('should reachout to endpoint', () => {
-    service.load();
-    expect(service.get).toHaveBeenCalled();
+    service.get();
     expect(httpClientSpy.get).toHaveBeenCalledWith('/contact');
   });
 
@@ -44,13 +42,7 @@ describe('ContactsService', () => {
       expect(data.length).toBe(2);
     };
 
-    service.load()
-      .pipe(
-        skipWhile(
-          // we skip the initial state of an empty array and test on everything
-          // else...
-          value => Array.isArray(value) && value.length === 0
-        )
-      ).subscribe(dataChecker);
+    service.get()
+      .subscribe(dataChecker);
   }));
 });

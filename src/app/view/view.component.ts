@@ -16,6 +16,6 @@ export class ViewComponent implements OnInit {
   constructor( private contacts: ContactsService) { }
 
   ngOnInit(): void {
-    this.contactList = this.contacts.load();
+    this.contactList = this.contacts.get();
   }
 }
