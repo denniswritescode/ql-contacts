@@ -73,6 +73,8 @@ describe('ViewportService', () => {
       tick();
       // state should be updated via subscription.
       expect(isFullscreen).toBeTrue();
+      expect(service.fullscreen()).toBeTrue();
+      expect(service.mobile()).toBeFalse();
 
       // Trigger a mobile breakpoint update..
       mediaMatcher.setMatchesQuery(service.breaks[0], false);
@@ -82,6 +84,8 @@ describe('ViewportService', () => {
       tick();
       // state should be updated.
       expect(isFullscreen).toBeFalse();
+      expect(service.fullscreen()).toBeFalse();
+      expect(service.mobile()).toBeTrue();
     })
   );
 });
