@@ -16,7 +16,7 @@ import { ContactFormComponent } from '../contact-form/contact-form.component';
 export class ContactAddComponent implements OnInit {
 
   constructor(
-    private viewport: BreakpointService,
+    public viewport: BreakpointService,
     private dialog: MatDialog,
     private snack: MatSnackBar,
   ) { }
@@ -24,6 +24,7 @@ export class ContactAddComponent implements OnInit {
   ngOnInit() { }
 
   openContactForm() {
+    debugger;
     const dialogRef = this.dialog.open(
       ContactFormComponent,
       {
