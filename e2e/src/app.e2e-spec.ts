@@ -1,4 +1,4 @@
-import { browser, logging } from 'protractor';
+import { browser, by, element, logging } from 'protractor';
 import { AppPage } from './app.po';
 
 describe('workspace-project App', () => {
@@ -11,6 +11,23 @@ describe('workspace-project App', () => {
   it('should display page header', () => {
     page.navigateTo();
     expect(page.getTitleText()).toEqual('Quicken Loans');
+  });
+
+  it('should display contact table header', () => {
+    page.navigateTo();
+    expect(page.getContactTitleText()).toEqual('Contact List');
+  });
+
+  it('should display contact table', () => {
+    page.navigateTo();
+    expect(page.hasContactsTable()).toBeTruthy();
+  });
+
+  it('should show create form', () => {
+    page.navigateTo();
+    element(by.css('app-contact-add button')).click();
+
+    expect(page.hasContactForm()).toBeTruthy();
   });
 
   afterEach(async () => {
