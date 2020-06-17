@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContactFormComponent } from '../contact-form/contact-form.component';
@@ -14,7 +14,7 @@ describe('ContactAddComponent', () => {
     afterClosed: () => {
       return {
         subscribe: (observer) => {
-          observers.push(observer);
+          observers.push({ next: observer });
         },
       };
     },
@@ -26,7 +26,8 @@ describe('ContactAddComponent', () => {
     },
   };
   const fakeMatSnackBar = {
-    open: () => { },
+    // tslint:disable-next-line: no-shadowed-variable
+    open: (message, action, options) => { },
   };
 
   beforeEach(async(() => {
@@ -83,4 +84,36 @@ describe('ContactAddComponent', () => {
       { width: '80vw', height: '80vh' },
     );
   });
+
+  it('should show success message (snack bar) contact was created',
+    fakeAsync(() => {
+      spyOn(fakeMatSnackBar, 'open');
+      expect(fakeMatSnackBar.open).not.toHaveBeenCalled();
+
+      component.openContactForm();
+
+      observers.forEach(o => o.next('success'));
+      tick();
+
+      expect(fakeMatSnackBar.open).toHaveBeenCalledWith(
+        'Contact created!',
+        'close',
+        { duration: 3000 },
+      );
+    })
+  );
+
+  it('should NOT show success message (snack bar) contact was created',
+    fakeAsync(() => {
+      spyOn(fakeMatSnackBar, 'open');
+      expect(fakeMatSnackBar.open).not.toHaveBeenCalled();
+
+      component.openContactForm();
+
+      observers.forEach(o => o.next(undefined));
+      tick();
+
+      expect(fakeMatSnackBar.open).not.toHaveBeenCalled();
+    })
+  );
 });
