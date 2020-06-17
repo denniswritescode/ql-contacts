@@ -20,7 +20,7 @@ jobs:
   unit-tests:
     <<: *defaults
     steps:
-      - attach_workspace
+      - attach_workspace:
           at: '.'
       - run:
           name: 'Run Unit Tests'
@@ -29,7 +29,7 @@ jobs:
   code-linting:
     <<: *defaults
     steps:
-      - attach_workspace
+      - attach_workspace:
           at: '.'
       - run:
           name: 'Run Linting Checks'
@@ -38,7 +38,7 @@ jobs:
   end-to-end-tests:
     <<: *defaults
     steps:
-      - attach_workspace
+      - attach_workspace:
           at: '.'
       - run:
           name: 'Run E2E Tests'
