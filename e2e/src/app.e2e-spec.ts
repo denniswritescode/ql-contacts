@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display page header', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('ql-contacts app is running!');
+    expect(page.getTitleText()).toEqual('Quicken Loans');
   });
 
   afterEach(async () => {
