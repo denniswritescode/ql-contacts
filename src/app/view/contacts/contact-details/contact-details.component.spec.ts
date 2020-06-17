@@ -1,11 +1,13 @@
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { MockComponent } from 'ng2-mock-component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FakeViewportService } from './../../../testing/viewport.service.fake';
 
 import { ContactDetailsComponent } from './contact-details.component';
 
 describe('ContactDetailsComponent', () => {
   let component: ContactDetailsComponent;
   let fixture: ComponentFixture<ContactDetailsComponent>;
+  let viewport: FakeViewportService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,6 +25,8 @@ describe('ContactDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactDetailsComponent);
     component = fixture.componentInstance;
+    viewport = new FakeViewportService();
+    component.viewport = viewport;
     component.contact = {
       _id: '5de91c005b98615393e74931',
       index: 0,
@@ -36,7 +40,28 @@ describe('ContactDetailsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create instance', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should subscribe to viewport stateObserver', () => {
+    expect(component.subscription).toBeTruthy();
+    expect(component.subscription.unsubscribe).toBeDefined();
+  });
+
+  it('should arrage data for presentation', () => {
+    expect(component.details.length).toBe(4);
+  });
+
+  it('should react to breakpoint changes',
+    fakeAsync(() => {
+      viewport.setState(FakeViewportService.STATES.FULLSCREEN);
+      tick();
+      expect(component.displayedItems.length).toBe(2);
+
+      viewport.setState(FakeViewportService.STATES.MOBILE);
+      tick();
+      expect(component.displayedItems.length).toBe(4);
+    })
+  );
 });

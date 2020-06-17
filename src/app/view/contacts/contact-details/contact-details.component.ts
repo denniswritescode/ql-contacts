@@ -20,10 +20,11 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   public details = [];
   public displayedItems = [];
-  private fullscreenItems: string[] = [ 'Email', 'Address' ];
-  private subscription: Subscription;
+  public subscription: Subscription;
 
-  constructor(private viewport: BreakpointService) { }
+  private fullscreenItems: string[] = [ 'Email', 'Address' ];
+
+  constructor(public viewport: BreakpointService) { }
 
   breakpointHandler(breakpoint) {
     if (breakpoint === ViewportService.STATES.MOBILE) {

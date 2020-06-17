@@ -64,9 +64,13 @@ export class ContactFormComponent {
 
     if (this.formValid()) {
       this.announce();
-      setTimeout(() => { this.dialogRef.close('success'); }, 3000);
+      setTimeout(this.closeForm.bind(this), 3000);
     } else {
       this.detest();
     }
+  }
+
+  closeForm() {
+    this.dialogRef.close('success');
   }
 }
