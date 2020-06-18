@@ -4,10 +4,7 @@ import { IQLFormInputValidation } from 'src/app/interfaces/shared.interfaces';
 
 /*
  * Sample Template:
- * <input
- *   [formControl]="con"
- *   [(ngModel)]="model"
- *   (ngModelChange)="modelChange.emit(model)" />
+ * <input matInput [formControl]="con">
  */
 
 @Component({
@@ -25,6 +22,7 @@ export abstract class EmittableInputComponent implements OnInit {
   @Output() stateChange = new EventEmitter<string>();
 
   @Input() name: string;
+  @Input() id: string;
   @Input() placeholder: string;
   @Input() validation: IQLFormInputValidation = { };
 

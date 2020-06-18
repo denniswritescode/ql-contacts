@@ -17,6 +17,7 @@
           *ngSwitchDefault
           class="contact-input"
           [name]="i.name"
+          [id]="i.key"
           [placeholder]="i.placeholder"
           [validation]="i.validation"
           [autocomplete]="i.autocomplete"
@@ -27,6 +28,7 @@
           *ngSwitchCase="'phone'"
           class="contact-input"
           [name]="i.name"
+          [id]="i.key"
           [placeholder]="i.placeholder"
           [validation]="i.validation"
           [(state)]="i.state"
@@ -36,6 +38,7 @@
           *ngSwitchCase="'email'"
           class="contact-input"
           [name]="i.name"
+          [id]="i.key"
           [placeholder]="i.placeholder"
           [validation]="i.validation"
           [(state)]="i.state"

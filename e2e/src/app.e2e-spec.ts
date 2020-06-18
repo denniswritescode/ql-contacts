@@ -30,6 +30,13 @@ describe('QL Contacts App', () => {
     expect(page.hasContactForm()).toBeTruthy();
   });
 
+  // it('should prevent submission of the form if not filled out', () => {
+  //   page.navigateTo();
+  //
+  //   element(by.css('app-contact-add button')).click();
+  //   browser.driver.findElement(by.id('company')).sendKeys('Google');
+  // });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
