@@ -2,12 +2,19 @@
 
   <mat-label>{{name}}</mat-label>
 
-  <input
+  <input type="text"
     [formControl]="con"
     matInput
+    [matAutocomplete]="auto"
     minlength="{{validation.minLength}}"
     maxlength="{{validation.maxLength}}"
     placeholder="{{placeholder}}" />
+
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option of autocompleteFilterOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
 
   <mat-hint *ngIf="validation.minLength || validation.maxLength" align="end">{{value.length}} / {{validation.minLength}}</mat-hint>
 

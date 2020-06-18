@@ -24,6 +24,7 @@ export interface IQLFormInput {
   key: string;
   type?: string;
   value: string | number;
+  autocomplete?: string[];
   placeholder?: string | number;
   validation?: IQLFormInputValidation;
   state: string;

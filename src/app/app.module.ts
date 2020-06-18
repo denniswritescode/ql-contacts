@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -70,6 +71,7 @@ import { ViewComponent } from './view/view.component';
     FormsModule,
     HttpClientModule,
     LayoutModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
