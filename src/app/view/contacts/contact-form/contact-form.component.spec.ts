@@ -28,7 +28,7 @@ describe('ContactFormComponent', () => {
         ContactFormComponent,
         MockComponent({
           selector: 'app-input-text',
-          inputs: [ 'name', 'value', 'placeholder', 'state', 'validation' ],
+          inputs: [ 'autocomplete', 'name', 'value', 'placeholder', 'state', 'validation' ],
         }),
         MockComponent({
           selector: 'app-input-email',

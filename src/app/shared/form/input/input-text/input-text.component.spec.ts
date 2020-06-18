@@ -32,6 +32,7 @@ describe('InputTextComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InputTextComponent);
     component = fixture.componentInstance;
+    component.autocomplete = [ 'One', 'Two', 'Three' ];
     fixture.detectChanges();
   });
 
