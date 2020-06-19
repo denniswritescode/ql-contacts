@@ -1,4 +1,5 @@
 import { browser, by, element, logging } from 'protractor';
+import { protractor } from 'protractor/built/ptor';
 import { AppPage } from './app.po';
 
 describe('QL Contacts App', () => {
@@ -30,12 +31,36 @@ describe('QL Contacts App', () => {
     expect(page.hasContactForm()).toBeTruthy();
   });
 
-  // it('should prevent submission of the form if not filled out', () => {
-  //   page.navigateTo();
-  //
-  //   element(by.css('app-contact-add button')).click();
-  //   browser.driver.findElement(by.id('company')).sendKeys('Google');
-  // });
+  it('should prevent submission of the form if not filled out', () => {
+    page.navigateTo();
+
+    element(by.css('app-contact-add button')).click();
+    page.fillOutFormInvalid();
+
+    expect(page.getCreateSubmitBtn().isEnabled()).toBeFalsy();
+  });
+
+  it('should allow submission of the form if filled out correctly', () => {
+    page.navigateTo();
+
+    element(by.css('app-contact-add button')).click();
+    expect(page.getCreateSubmitBtn().isEnabled()).toBeFalsy();
+    page.fillOutFormValid();
+    expect(page.getCreateSubmitBtn().isEnabled()).toBeTruthy();
+  });
+
+  it('should close dialog after submission of form', () => {
+    const EC = protractor.ExpectedConditions;
+    page.navigateTo();
+
+    element(by.css('app-contact-add button')).click();
+    page.fillOutFormValid();
+    page.getCreateSubmitBtn().click();
+    // form should disappear immediately..
+    expect(page.getContactForm().isPresent()).toBeFalsy();
+    // dialog should disappear in 3 seconds..
+    browser.wait(EC.not(EC.presenceOf(page.getDialog())), 3100);
+  });
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

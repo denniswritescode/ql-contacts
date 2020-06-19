@@ -61,6 +61,7 @@
   <button
     mat-raised-button
     *ngIf="!isLoading"
+    id="create-contact-submit"
     [disabled]="!formValid()"
     (click)="createContact()"
     color="primary">Create</button>

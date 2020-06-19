@@ -5,11 +5,11 @@
   <input type="text"
     [formControl]="con"
     matInput
-    id="{{id}}"
+    [id]="id"
     [matAutocomplete]="auto"
-    minlength="{{validation.minLength}}"
-    maxlength="{{validation.maxLength}}"
-    placeholder="{{placeholder}}" />
+    [minlength]="validation.minLength"
+    [maxlength]="validation.maxLength"
+    [placeholder]="placeholder" />
 
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let option of autocompleteFilterOptions | async" [value]="option">
