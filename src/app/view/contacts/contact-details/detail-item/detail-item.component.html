@@ -8,11 +8,11 @@
 
   <div class="info">
 
-    <div class="info-value" *ngIf="label.toLowerCase() !== 'phone'">
+    <div class="info-value" *ngIf="label && label.toLowerCase() !== 'phone'">
       {{value}}
     </div>
 
-    <div class="info-value" *ngIf="label.toLowerCase() === 'phone'">
+    <div class="info-value" *ngIf="label && label.toLowerCase() === 'phone'">
       <a [href]="value | phone: 'link'">{{value | phone}}</a>
     </div>
 
