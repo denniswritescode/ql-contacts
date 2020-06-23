@@ -13,12 +13,12 @@
     *ngIf="!isLoading">
 
       <app-input-text
-        *ngFor="let i of formData"
+        *ngFor="let input of formData"
         class="contact-input"
-        [config]="i.config"
-        [autocomplete]="i.autocomplete"
-        [(state)]="i.state"
-        [(value)]="i.value"></app-input-text>
+        [config]="input.config"
+        [autocomplete]="input.autocomplete"
+        [(state)]="input.state"
+        [(value)]="input.value"></app-input-text>
 
   </form>
 

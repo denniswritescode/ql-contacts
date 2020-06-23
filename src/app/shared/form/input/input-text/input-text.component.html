@@ -1,7 +1,7 @@
 <mat-form-field class="full-width">
 
   <!-- INPUT NAME -->
-  <mat-label>{{config?.name}}</mat-label>
+  <mat-label>{{config.name}}</mat-label>
 
   <!-- PREFIX -->
   <span matPrefix *ngIf="format('phone')">+1 &nbsp;</span>
@@ -10,11 +10,11 @@
   <input
     [formControl]="con"
     matInput
-    [id]="config?.id"
+    [id]="config.id"
     [matAutocomplete]="auto"
-    [minlength]="config?.validation?.minLength"
-    [maxlength]="config?.validation?.maxLength"
-    [placeholder]="config?.placeholder" />
+    [minlength]="config.validation?.minLength"
+    [maxlength]="config.validation?.maxLength"
+    [placeholder]="config.placeholder" />
 
   <!-- SUFFIX -->
   <mat-icon matSuffix *ngIf="format('email')">alternate_email</mat-icon>
@@ -23,21 +23,21 @@
   <!-- AUTOCOMPLETE -->
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let option of autocompleteFilterOptions | async" [value]="option">
-      {{ option }}
+      {{option}}
     </mat-option>
   </mat-autocomplete>
 
   <!-- LENGTH HINT -->
-  <mat-hint *ngIf="config?.charCount" align="end">
+  <mat-hint *ngIf="config.charCount" align="end">
     {{value.length}} / {{config.charCount}}
   </mat-hint>
 
   <!-- ERRORS -->
   <mat-error *ngIf="con.hasError('required')">
-    {{config?.name || 'this value' | lowercase}} is <strong>required</strong>
+    {{config.name || 'this value' | lowercase}} is <strong>required</strong>
   </mat-error>
 
-  <mat-error *ngIf="con.hasError('pattern') && config?.validation?.numbersOnly && !con.hasError('required')">
+  <mat-error *ngIf="con.hasError('pattern') && config.validation?.numbersOnly && !con.hasError('required')">
     only numerical values allowed
   </mat-error>
 

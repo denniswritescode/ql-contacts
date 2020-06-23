@@ -26,10 +26,6 @@ export interface IQLFormInput {
   config?: IQLFormInputConfiguration;
 }
 
-// export interface IQLFormTextInput extends IQLFormInput {
-//   autocomplete?: string[];
-// }
-
 export interface IQLFormInputConfiguration {
   validation?: IQLFormInputValidation;
   name?: string;

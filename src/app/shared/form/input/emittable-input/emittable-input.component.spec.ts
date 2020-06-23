@@ -70,7 +70,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { required: true };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(validValue);
@@ -84,7 +84,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { required: true };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(invalidValue);
@@ -98,7 +98,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { minLength: 5 };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(validValue);
@@ -112,7 +112,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { minLength: 5 };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(invalidValue);
@@ -126,7 +126,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { pattern: /[a-zA-Z]/ };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(validValue);
@@ -140,7 +140,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { pattern: /[a-zA-Z]/ };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(invalidValue);
@@ -154,7 +154,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { numbersOnly: true };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(validValue);
@@ -168,7 +168,7 @@ describe('EmittableInputComponent', () => {
     };
 
     component.config.validation = { numbersOnly: true };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(invalidValue);

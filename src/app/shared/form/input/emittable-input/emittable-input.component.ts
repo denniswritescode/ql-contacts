@@ -26,7 +26,6 @@ export abstract class EmittableInputComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.passedValidation();
     this.extendedValidation();
 
