@@ -1,13 +1,25 @@
 <div class="detail">
+
   <div class="icon">
+
     <i class="material-icons">{{icon}}</i>
+
   </div>
+
   <div class="info">
-    <div class="info-value">
+
+    <div class="info-value" *ngIf="label.toLowerCase() !== 'phone'">
       {{value}}
     </div>
+
+    <div class="info-value" *ngIf="label.toLowerCase() === 'phone'">
+      <a [href]="value | phone: 'link'">{{value | phone}}</a>
+    </div>
+
     <div class="info-label">
       {{label}}
     </div>
+
   </div>
+
 </div>
