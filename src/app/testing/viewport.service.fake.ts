@@ -1,14 +1,11 @@
 import { Breakpoints } from '@angular/cdk/layout';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BreakpointService } from 'src/app/services/viewport/viewport.service';
+import { IViewportService } from 'src/app/interfaces/shared.interfaces';
+import { ViewportConstants } from 'src/app/services/viewport/viewport.constants';
 
-export class FakeViewportService extends BreakpointService {
-  static readonly STATES = {
-    MOBILE: 'mobile',
-    FULLSCREEN: 'fullScreen',
-  };
+export class FakeViewportService implements IViewportService {
 
-  private subject: BehaviorSubject<string> = new BehaviorSubject(FakeViewportService.STATES.MOBILE);
+  private subject: BehaviorSubject<string> = new BehaviorSubject(ViewportConstants.STATES.MOBILE);
   private state: string;
 
   public readonly stateObserver: Observable<string> = this.subject.asObservable();
@@ -18,9 +15,7 @@ export class FakeViewportService extends BreakpointService {
     Breakpoints.XLarge,
   ];
 
-  constructor() {
-    super();
-  }
+  constructor() { }
 
   getState(): string {
     return this.state;
@@ -31,11 +26,19 @@ export class FakeViewportService extends BreakpointService {
     this.subject.next(this.state);
   }
 
+  setFullscreen(): void {
+    this.setState(ViewportConstants.STATES.FULLSCREEN);
+  }
+
+  setMobile(): void {
+    this.setState(ViewportConstants.STATES.MOBILE);
+  }
+
   fullscreen(): boolean {
-    return this.state === FakeViewportService.STATES.FULLSCREEN;
+    return this.state === ViewportConstants.STATES.FULLSCREEN;
   }
 
   mobile(): boolean {
-    return this.state === FakeViewportService.STATES.MOBILE;
+    return this.state === ViewportConstants.STATES.MOBILE;
   }
 }

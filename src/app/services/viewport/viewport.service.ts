@@ -1,27 +1,15 @@
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-export abstract class BreakpointService {
-  public readonly stateObserver: Observable<string>;
-  public readonly breaks: string[];
-  readonly STATES: any;
-
-  public abstract getState(): string;
-  public abstract fullscreen(): boolean;
-  public abstract mobile(): boolean;
-}
+import { IViewportService } from 'src/app/interfaces/shared.interfaces';
+import { ViewportConstants } from './viewport.constants';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ViewportService extends BreakpointService {
-  static readonly STATES = {
-    MOBILE: 'mobile',
-    FULLSCREEN: 'fullScreen',
-  };
+export class ViewportService implements IViewportService {
 
-  private subject: BehaviorSubject<string> = new BehaviorSubject(ViewportService.STATES.MOBILE);
+  private subject: BehaviorSubject<string> = new BehaviorSubject(ViewportConstants.STATES.MOBILE);
   private state: string;
 
   public readonly stateObserver: Observable<string> = this.subject.asObservable();
@@ -32,8 +20,6 @@ export class ViewportService extends BreakpointService {
   ];
 
   constructor(private observer: BreakpointObserver) {
-    super();
-
     observer
       .observe(this.breaks)
       .subscribe(this.breakpointUpdateHandler.bind(this));
@@ -41,8 +27,8 @@ export class ViewportService extends BreakpointService {
 
   breakpointUpdateHandler(breakpoint): void {
     this.state = breakpoint.matches ?
-      ViewportService.STATES.FULLSCREEN :
-      ViewportService.STATES.MOBILE;
+      ViewportConstants.STATES.FULLSCREEN :
+      ViewportConstants.STATES.MOBILE;
 
     this.subject.next(this.state);
   }
@@ -52,10 +38,10 @@ export class ViewportService extends BreakpointService {
   }
 
   fullscreen(): boolean {
-    return this.state === ViewportService.STATES.FULLSCREEN;
+    return this.state === ViewportConstants.STATES.FULLSCREEN;
   }
 
   mobile(): boolean {
-    return this.state === ViewportService.STATES.MOBILE;
+    return this.state === ViewportConstants.STATES.MOBILE;
   }
 }

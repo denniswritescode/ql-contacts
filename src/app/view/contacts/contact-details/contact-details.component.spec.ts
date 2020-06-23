@@ -1,6 +1,7 @@
 import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockComponent } from 'ng2-mock-component';
-import { FakeViewportService } from './../../../testing/viewport.service.fake';
+import { ITOKENS } from 'src/app/shared/injection.tokens';
+import { FakeViewportService } from 'src/app/testing/viewport.service.fake';
 
 import { ContactDetailsComponent } from './contact-details.component';
 
@@ -10,6 +11,9 @@ describe('ContactDetailsComponent', () => {
   let viewport: FakeViewportService;
 
   beforeEach(async(() => {
+    viewport = new FakeViewportService();
+    const vpfactory = () => viewport;
+
     TestBed.configureTestingModule({
       declarations: [
         ContactDetailsComponent,
@@ -18,6 +22,16 @@ describe('ContactDetailsComponent', () => {
           inputs: [ 'icon', 'label', 'value' ],
         }),
       ],
+      providers: [
+        {
+          provide: ITOKENS.IViewportService,
+          // Using 'useFactory' (as opposed to 'useValue') is the only way to
+          // make sure the test on line 53 passes, and consequently, the only to
+          // get the majority of our viewport tests to pass because of the 'cloning issue'.
+          // https://github.com/angular/angular/issues/10788
+          useFactory: vpfactory.bind(this),
+        },
+      ],
     })
     .compileComponents();
   }));
@@ -25,8 +39,6 @@ describe('ContactDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactDetailsComponent);
     component = fixture.componentInstance;
-    viewport = new FakeViewportService();
-    component.viewport = viewport;
     component.contact = {
       _id: '5de91c005b98615393e74931',
       index: 0,
@@ -38,6 +50,10 @@ describe('ContactDetailsComponent', () => {
       address: '920 Hastings Street, Roosevelt, Puerto Rico, 5573',
     };
     fixture.detectChanges();
+  });
+
+  it('should use fake viewport', () => {
+    expect(Object.is(component.viewport, viewport)).toBeTruthy();
   });
 
   it('should create instance', () => {
@@ -55,11 +71,11 @@ describe('ContactDetailsComponent', () => {
 
   it('should react to breakpoint changes',
     fakeAsync(() => {
-      viewport.setState(FakeViewportService.STATES.FULLSCREEN);
+      viewport.setFullscreen();
       tick();
       expect(component.displayedItems.length).toBe(2);
 
-      viewport.setState(FakeViewportService.STATES.MOBILE);
+      viewport.setMobile();
       tick();
       expect(component.displayedItems.length).toBe(4);
     })

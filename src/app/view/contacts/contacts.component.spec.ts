@@ -2,13 +2,13 @@ import { fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testin
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs';
-import { BreakpointService } from 'src/app/services/viewport/viewport.service';
 import { PhonePipe } from './../../pipes/phone.pipe';
 import { TruncatePipe } from './../../pipes/truncate.pipe';
 
 import { MockComponent } from 'ng2-mock-component';
 
 import { IContact } from 'src/app/interfaces/shared.interfaces';
+import { ITOKENS } from 'src/app/shared/injection.tokens';
 import { FakeViewportService } from 'src/app/testing/viewport.service.fake';
 import { ContactsComponent } from './contacts.component';
 
@@ -34,6 +34,8 @@ describe('ContactsComponent', () => {
 
   beforeEach(() => {
     viewport = new FakeViewportService();
+    const vpfactory = () => viewport;
+
     TestBed.configureTestingModule({
       declarations: [
         ContactsComponent,
@@ -56,7 +58,16 @@ describe('ContactsComponent', () => {
         BrowserAnimationsModule,
       ],
       providers: [
-        { provide: BreakpointService, useValue: viewport },
+        {
+          provide: ITOKENS.IViewportService,
+          // Using 'useFactory' (as opposed to 'useValue') is the only way to
+          // make sure the viewport our component uses is the EXACT same viewport
+          // that's accessible to us outside of the component, and in our tests.
+          // Consequently this is the only way to get the majority of our viewport
+          // tests to pass because of the 'cloning issue'.
+          // https://github.com/angular/angular/issues/10788
+          useFactory: vpfactory.bind(this),
+        },
       ],
     })
     .compileComponents();
@@ -66,7 +77,6 @@ describe('ContactsComponent', () => {
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
     component.contacts = contactsObservable;
-    component.viewport = viewport;
     fixture.detectChanges();
   });
 
@@ -80,11 +90,11 @@ describe('ContactsComponent', () => {
 
   it('should react to changes in breakpoint',
     fakeAsync(() => {
-      viewport.setState(FakeViewportService.STATES.FULLSCREEN);
+      viewport.setFullscreen();
       tick();
       expect(component.displayedColumns.length).toBe(4);
 
-      viewport.setState(FakeViewportService.STATES.MOBILE);
+      viewport.setMobile();
       tick();
       expect(component.displayedColumns.length).toBe(1);
     })
@@ -92,12 +102,12 @@ describe('ContactsComponent', () => {
 
   it('should user the viewport service for responsive data',
     fakeAsync(() => {
-      viewport.setState(FakeViewportService.STATES.FULLSCREEN);
+      viewport.setFullscreen();
       tick();
       expect(viewport.mobile()).toBe(false);
       expect(component.mobile()).toBe(false);
 
-      viewport.setState(FakeViewportService.STATES.MOBILE);
+      viewport.setMobile();
       tick();
       expect(viewport.mobile()).toBe(true);
       expect(component.mobile()).toBe(true);

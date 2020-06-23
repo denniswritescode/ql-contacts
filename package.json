@@ -8,7 +8,7 @@
     "build": "ng build",
     "build:gh": "ng build --prod --output-path docs --base-href /ql-contacts/ && cp docs/index.html docs/404.html",
     "test": "ng test --codeCoverage=true",
-    "test:ci": "ng test --watch=false --codeCoverage=true",
+    "test:ci": "ng test --codeCoverage=true --watch=false --codeCoverageExclude '**/injection.tokens.ts' --codeCoverageExclude 'src/app/testing/**'",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

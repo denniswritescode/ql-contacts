@@ -1,17 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IContact } from 'src/app/interfaces/shared.interfaces';
-import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
+import { IContact, IViewportService } from 'src/app/interfaces/shared.interfaces';
+import { ViewportConstants } from 'src/app/services/viewport/viewport.constants';
+import { ITOKENS } from 'src/app/shared/injection.tokens';
 
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
-  providers: [
-    {
-      provide: BreakpointService,
-      useClass: ViewportService,
-    },
-  ],
   styleUrls: [ './contact-details.component.scss' ],
 })
 export class ContactDetailsComponent implements OnInit, OnDestroy {
@@ -24,10 +19,12 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   private fullscreenItems: string[] = [ 'Email', 'Address' ];
 
-  constructor(public viewport: BreakpointService) { }
+  constructor(
+    @Inject(ITOKENS.IViewportService) public viewport: IViewportService,
+  ) { }
 
   breakpointHandler(breakpoint) {
-    if (breakpoint === ViewportService.STATES.MOBILE) {
+    if (breakpoint === ViewportConstants.STATES.MOBILE) {
       this.displayedItems = this.details.slice();
     } else {
       this.displayedItems = this.details.filter(el => this.fullscreenItems.includes(el.label));

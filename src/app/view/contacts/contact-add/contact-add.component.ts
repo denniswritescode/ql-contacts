@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
+import { IViewportService } from 'src/app/interfaces/shared.interfaces';
+import { ITOKENS } from 'src/app/shared/injection.tokens';
 
 import { ContactFormComponent } from '../contact-form/contact-form.component';
 
@@ -9,14 +10,11 @@ import { ContactFormComponent } from '../contact-form/contact-form.component';
   selector: 'app-contact-add',
   templateUrl: './contact-add.component.html',
   styleUrls: [ './contact-add.component.scss' ],
-  providers: [
-    { provide: BreakpointService, useClass: ViewportService },
-  ],
 })
 export class ContactAddComponent {
 
   constructor(
-    public viewport: BreakpointService,
+    @Inject(ITOKENS.IViewportService) private viewport: IViewportService,
     private dialog: MatDialog,
     private snack: MatSnackBar,
   ) { }

@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export interface IBaseContact {
   firstName: string;
   lastName: string;
@@ -47,4 +49,13 @@ export interface IQLFormInputValidation {
   maxLength?: number;
   pattern?: RegExp | string;
   numbersOnly?: boolean;
+}
+
+export interface IViewportService {
+  readonly stateObserver: Observable<string>;
+  readonly breaks: string[];
+
+  getState(): string;
+  fullscreen(): boolean;
+  mobile(): boolean;
 }

@@ -2,6 +2,7 @@ import { fakeAsync, inject, tick, TestBed } from '@angular/core/testing';
 import { FakeMediaMatcher } from '../../testing/media-matcher.fake';
 
 import { BreakpointObserver, LayoutModule, MediaMatcher } from '@angular/cdk/layout';
+import { ViewportConstants } from './viewport.constants';
 import { ViewportService } from './viewport.service';
 
 describe('ViewportService', () => {
@@ -45,7 +46,7 @@ describe('ViewportService', () => {
       // wait one tick for observer functions to run.
       tick();
       // state should be updated.
-      expect(service.getState()).toBe(ViewportService.STATES.FULLSCREEN);
+      expect(service.getState()).toBe(ViewportConstants.STATES.FULLSCREEN);
 
       // Trigger a mobile breakpoint update..
       mediaMatcher.setMatchesQuery(service.breaks[0], false);
@@ -54,7 +55,7 @@ describe('ViewportService', () => {
       // wait one tick for observer functions to run.
       tick();
       // state should be updated.
-      expect(service.getState()).toBe(ViewportService.STATES.MOBILE);
+      expect(service.getState()).toBe(ViewportConstants.STATES.MOBILE);
     })
   );
 
@@ -64,7 +65,7 @@ describe('ViewportService', () => {
       // subscribe to breakpoint messages
       service.stateObserver
         .subscribe((viewportState) => {
-          isFullscreen = viewportState === ViewportService.STATES.FULLSCREEN;
+          isFullscreen = viewportState === ViewportConstants.STATES.FULLSCREEN;
         });
 
       // Trigger a fullscreen breakpoint update..
