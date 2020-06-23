@@ -20,11 +20,11 @@ export class ContactFormComponent {
   ) { }
 
   formValid() {
-    return this.formData.every(input => input.state === 'VALID' || input.key === 'address2');
+    return this.formData.every(input => input.state === 'VALID' || input.config.id === 'address2');
   }
 
   serialize() {
-    const entries = new Map(this.formData.map((el) => [ el.key, el.value ]));
+    const entries = new Map(this.formData.map((el) => [ el.config.id, el.value ]));
     // @ts-ignore
     const payload = this.prepare(Object.fromEntries(entries));
 
@@ -56,7 +56,7 @@ export class ContactFormComponent {
   }
 
   detest() {
-    console.log('Not Valid', this.formData.map((el) => ({ key: el.key, state: el.state })));
+    console.log('Not Valid', this.formData.map((el) => ({ key: el.config.id, state: el.state })));
   }
 
   createContact() {

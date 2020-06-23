@@ -7,46 +7,18 @@
 
   <mat-spinner *ngIf="isLoading"></mat-spinner>
 
-  <form class="contact-form" *ngIf="!isLoading">
+  <form
+    id="contact-form"
+    class="contact-form"
+    *ngIf="!isLoading">
 
-    <div *ngFor="let i of formData">
-
-      <div [ngSwitch]="i.type">
-
-        <app-input-text
-          *ngSwitchDefault
-          class="contact-input"
-          [name]="i.name"
-          [id]="i.key"
-          [placeholder]="i.placeholder"
-          [validation]="i.validation"
-          [autocomplete]="i.autocomplete"
-          [(state)]="i.state"
-          [(value)]="i.value"></app-input-text>
-
-        <app-input-phone
-          *ngSwitchCase="'phone'"
-          class="contact-input"
-          [name]="i.name"
-          [id]="i.key"
-          [placeholder]="i.placeholder"
-          [validation]="i.validation"
-          [(state)]="i.state"
-          [(value)]="i.value"></app-input-phone>
-
-        <app-input-email
-          *ngSwitchCase="'email'"
-          class="contact-input"
-          [name]="i.name"
-          [id]="i.key"
-          [placeholder]="i.placeholder"
-          [validation]="i.validation"
-          [(state)]="i.state"
-          [(value)]="i.value"></app-input-email>
-
-      </div>
-
-    </div>
+      <app-input-text
+        *ngFor="let i of formData"
+        class="contact-input"
+        [config]="i.config"
+        [autocomplete]="i.autocomplete"
+        [(state)]="i.state"
+        [(value)]="i.value"></app-input-text>
 
   </form>
 

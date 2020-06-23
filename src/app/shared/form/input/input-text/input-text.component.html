@@ -1,38 +1,56 @@
 <mat-form-field class="full-width">
 
-  <mat-label>{{name}}</mat-label>
+  <!-- INPUT NAME -->
+  <mat-label>{{config?.name}}</mat-label>
 
-  <input type="text"
+  <!-- PREFIX -->
+  <span matPrefix *ngIf="format('phone')">+1 &nbsp;</span>
+
+  <!-- MAIN TEXT INPUT -->
+  <input
     [formControl]="con"
     matInput
-    [id]="id"
+    [id]="config?.id"
     [matAutocomplete]="auto"
-    [minlength]="validation.minLength"
-    [maxlength]="validation.maxLength"
-    [placeholder]="placeholder" />
+    [minlength]="config?.validation?.minLength"
+    [maxlength]="config?.validation?.maxLength"
+    [placeholder]="config?.placeholder" />
 
+  <!-- SUFFIX -->
+  <mat-icon matSuffix *ngIf="format('email')">alternate_email</mat-icon>
+  <mat-icon matSuffix *ngIf="format('phone')">perm_phone_msg</mat-icon>
+
+  <!-- AUTOCOMPLETE -->
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let option of autocompleteFilterOptions | async" [value]="option">
       {{ option }}
     </mat-option>
   </mat-autocomplete>
 
-  <mat-hint *ngIf="validation.minLength || validation.maxLength" align="end">{{value.length}} / {{validation.minLength}}</mat-hint>
+  <!-- LENGTH HINT -->
+  <mat-hint *ngIf="config?.charCount" align="end">
+    {{value.length}} / {{config.charCount}}
+  </mat-hint>
 
+  <!-- ERRORS -->
   <mat-error *ngIf="con.hasError('required')">
-    {{name.toLowerCase()}} is <strong>required</strong>
+    {{config?.name || 'this value' | lowercase}} is <strong>required</strong>
   </mat-error>
 
-  <mat-error *ngIf="con.hasError('pattern') && validation.numbersOnly && !con.hasError('required')">
+  <mat-error *ngIf="con.hasError('pattern') && config?.validation?.numbersOnly && !con.hasError('required')">
     only numerical values allowed
   </mat-error>
 
   <mat-error *ngIf="con.hasError('minlength') && !con.hasError('pattern') && !con.hasError('required')">
-    the {{name.toLowerCase()}} is too short
+    your input is too short
   </mat-error>
 
   <mat-error *ngIf="con.hasError('maxlength') && !con.hasError('pattern') && !con.hasError('required')">
-    the {{name.toLowerCase()}} is too long
+    your input is too long
+  </mat-error>
+
+  <mat-error *ngIf="con.hasError('email') && !con.hasError('required')">
+    please enter a valid email address
   </mat-error>
 
 </mat-form-field>

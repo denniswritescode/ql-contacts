@@ -1,7 +1,7 @@
 import { fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BreakpointService } from 'src/app/services/viewport/viewport.service';
 import { PhonePipe } from './../../pipes/phone.pipe';
 import { TruncatePipe } from './../../pipes/truncate.pipe';
@@ -65,7 +65,7 @@ describe('ContactsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
-    component.list = contactsObservable;
+    component.contacts = contactsObservable;
     component.viewport = viewport;
     fixture.detectChanges();
   });

@@ -23,8 +23,6 @@ import { AppComponent } from './app.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FooterComponent } from './shared/footer/footer.component';
-import { InputEmailComponent } from './shared/form/input/input-email/input-email.component';
-import { InputPhoneComponent } from './shared/form/input/input-phone/input-phone.component';
 import { InputTextComponent } from './shared/form/input/input-text/input-text.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ContactAddComponent } from './view/contacts/contact-add/contact-add.component';
@@ -51,8 +49,6 @@ import { ViewComponent } from './view/view.component';
     ContactHeaderComponent,
     ContactFormComponent,
     InputTextComponent,
-    InputEmailComponent,
-    InputPhoneComponent,
     DetailItemComponent,
     TruncatePipe,
     NameCellComponent,
@@ -61,7 +57,6 @@ import { ViewComponent } from './view/view.component';
   ],
   entryComponents: [
     ContactFormComponent,
-    InputPhoneComponent,
     InputTextComponent,
   ],
   imports: [

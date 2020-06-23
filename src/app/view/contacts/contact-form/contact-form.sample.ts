@@ -1,113 +1,130 @@
+import { ValidatorFn } from '@angular/forms';
 export const CONTACT_SAMPLE_FORM_DATA = [
   {
-    name: 'Company',
-    key: 'company',
-    placeholder: 'Ex. Google Inc.',
-    type: 'text',
     value: 'Quicken Loans',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'Company',
+      id: 'company',
+      placeholder: 'Ex. Google Inc.',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'First Name',
-    key: 'firstName',
-    placeholder: 'Ex. John',
     value: 'John',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'First Name',
+      id: 'firstName',
+      placeholder: 'Ex. John',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Last Name',
-    key: 'lastName',
-    placeholder: 'Ex. Doe',
     value: 'Doe',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'Last Name',
+      id: 'lastName',
+      placeholder: 'Ex. Doe',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Phone Number',
-    key: 'phone',
-    placeholder: 'Ex. 313-555-1212',
-    type: 'phone',
     value: '3135551212',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'Phone Number',
+      id: 'phone',
+      placeholder: 'Ex. 313-555-1212',
+      format: 'phone',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Email Address',
-    key: 'email',
-    placeholder: 'Ex. joe@ql.com',
-    type: 'email',
     value: 'joe@ql.com',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'Email Address',
+      id: 'email',
+      placeholder: 'Ex. joe@ql.com',
+      format: 'email',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Address',
-    key: 'address',
-    placeholder: 'Ex. 1234 Easy Street',
-    type: 'text',
     value: '1234 Easy Street',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'Address',
+      id: 'address',
+      placeholder: 'Ex. 1234 Easy Street',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Address 2',
-    key: 'address2',
-    placeholder: 'Unit #67',
-    type: 'text',
     value: '',
     state: '',
-    validation: {
-      required: false,
+    config: {
+      name: 'Address 2',
+      id: 'address2',
+      placeholder: 'Unit #67',
+      value: '',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'City',
-    key: 'city',
-    placeholder: 'Ex. Detroit',
-    type: 'text',
     value: 'Detroit',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'City',
+      id: 'city',
+      placeholder: 'Ex. Detroit',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'State',
-    key: 'state',
-    placeholder: 'Ex. Michigan',
-    type: 'text',
     value: 'Michigan',
     state: 'VALID',
-    validation: {
-      required: true,
+    config: {
+      name: 'State',
+      id: 'state',
+      placeholder: 'Ex. Michigan',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Postal Code',
-    key: 'zipCode',
-    placeholder: 'Ex. 54321',
-    type: 'number',
     value: '12345',
     state: 'VALID',
-    validation: {
-      required: true,
-      minLength: 5,
-      maxLength: 5,
-      numbersOnly: true,
+    config: {
+      name: 'Postal Code',
+      id: 'zipCode',
+      placeholder: 'Ex. 54321',
+      format: 'number',
+      validation: {
+        required: true,
+        minLength: 5,
+        maxLength: 5,
+        numbersOnly: true,
+      },
     },
   },
 ];

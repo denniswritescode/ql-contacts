@@ -28,7 +28,7 @@ describe('EmittableInputComponent', () => {
       expect(value).toBe(testValue);
     };
 
-    component.valueChange.subscribe(asyncTest.bind(this));
+    component.valueChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(testValue);
@@ -41,8 +41,8 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('VALID');
     };
 
-    component.validation = { maxLength: 5 };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.config.validation = { maxLength: 5 };
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(validValue);
@@ -55,8 +55,8 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('INVALID');
     };
 
-    component.validation = { maxLength: 5 };
-    component.stateChange.subscribe(asyncTest.bind(this));
+    component.config.validation = { maxLength: 5 };
+    component.stateChange.subscribe(asyncTest);
     component.ngOnInit();
 
     component.con.setValue(invalidValue);
@@ -69,7 +69,7 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('VALID');
     };
 
-    component.validation = { required: true };
+    component.config.validation = { required: true };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 
@@ -83,21 +83,21 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('INVALID');
     };
 
-    component.validation = { required: true };
+    component.config.validation = { required: true };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 
     component.con.setValue(invalidValue);
   }));
 
-  it('should respect validation rules: required:VALID', async(() => {
+  it('should respect config.validation rules: required:VALID', async(() => {
     const validValue = 'ABCDE';
 
     const asyncTest = (state) => {
       expect(state).toBe('VALID');
     };
 
-    component.validation = { minLength: 5 };
+    component.config.validation = { minLength: 5 };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 
@@ -111,7 +111,7 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('INVALID');
     };
 
-    component.validation = { minLength: 5 };
+    component.config.validation = { minLength: 5 };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 
@@ -125,7 +125,7 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('VALID');
     };
 
-    component.validation = { pattern: /[a-zA-Z]/ };
+    component.config.validation = { pattern: /[a-zA-Z]/ };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 
@@ -139,7 +139,7 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('INVALID');
     };
 
-    component.validation = { pattern: /[a-zA-Z]/ };
+    component.config.validation = { pattern: /[a-zA-Z]/ };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 
@@ -153,7 +153,7 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('VALID');
     };
 
-    component.validation = { numbersOnly: true };
+    component.config.validation = { numbersOnly: true };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 
@@ -167,7 +167,7 @@ describe('EmittableInputComponent', () => {
       expect(state).toBe('INVALID');
     };
 
-    component.validation = { numbersOnly: true };
+    component.config.validation = { numbersOnly: true };
     component.stateChange.subscribe(asyncTest.bind(this));
     component.ngOnInit();
 

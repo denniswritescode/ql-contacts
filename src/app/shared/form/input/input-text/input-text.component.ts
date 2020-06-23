@@ -1,4 +1,5 @@
 import { AfterContentInit, Component, Input } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { EmittableInputComponent } from 'src/app/shared/form/input/emittable-input/emittable-input.component';
@@ -18,21 +19,37 @@ export class InputTextComponent extends EmittableInputComponent implements After
   }
 
   ngAfterContentInit() {
+    // manipulation of 'con' needs to happen after ngOnInit...
     if (Array.isArray(this.autocomplete)) {
-      this.autocompleteFilterOptions = this.con.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+      this.autocompleteFilterOptions = this.con.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this.filterOptions(value))
+        );
     }
   }
 
-  private _filter(value: string): string[] {
-    if (Array.isArray(this.autocomplete)) {
-      const filterValue = value.toLowerCase();
+  private filterOptions(value: string): string[] {
+    const filterValue = value.toLowerCase();
 
-      return this.autocomplete.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-    }
+    return this.autocomplete.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  extendedValidation() { }
+  format(type) {
+    return this.config.format === type;
+  }
+
+  extendedValidation() {
+    if (this.config.format === 'email') {
+      this.validators.push(Validators.email);
+    }
+
+    if (this.config.format === 'phone') {
+      this.validators = this.validators.concat([
+        Validators.maxLength(10),
+        Validators.minLength(10),
+        Validators.pattern(/^[0-9]\d*$/),
+      ]);
+    }
+  }
 }

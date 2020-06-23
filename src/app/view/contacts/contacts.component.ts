@@ -31,7 +31,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   @ViewChild(MatTable) table: MatTable<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @Input() public list: Observable<IContact[]>;
+  @Input() public contacts: Observable<IContact[]>;
   public dataSource: MatTableDataSource<IContact>;
   public dataLength: number;
 
@@ -56,15 +56,15 @@ export class ContactsComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.list
+      this.contacts
         .pipe(skipWhile(c => !(Array.isArray(c) && c.length) ))
         .subscribe(this.contactsHandler.bind(this))
     );
   }
 
-  contactsHandler(contacts) {
-    this.dataLength = contacts.length;
-    this.dataSource = new MatTableDataSource(contacts);
+  contactsHandler(data) {
+    this.dataLength = data.length;
+    this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
   }
 

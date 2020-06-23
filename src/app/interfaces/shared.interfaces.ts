@@ -20,14 +20,23 @@ export interface IFormContact extends IBaseContact {
 }
 
 export interface IQLFormInput {
-  name: string;
-  key: string;
-  type?: string;
+  state: string;
   value: string | number;
   autocomplete?: string[];
-  placeholder?: string | number;
+  config?: IQLFormInputConfiguration;
+}
+
+// export interface IQLFormTextInput extends IQLFormInput {
+//   autocomplete?: string[];
+// }
+
+export interface IQLFormInputConfiguration {
   validation?: IQLFormInputValidation;
-  state: string;
+  name?: string;
+  id?: string;
+  format?: string;
+  placeholder?: string | number;
+  charCount?: number;
 }
 
 /*
