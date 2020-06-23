@@ -102,6 +102,7 @@ export const CONTACT_SAMPLE_FORM_DATA = [
   {
     value: 'Michigan',
     state: 'VALID',
+    autocomplete: [],
     config: {
       name: 'State',
       id: 'state',

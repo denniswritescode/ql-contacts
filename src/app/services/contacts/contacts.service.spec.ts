@@ -1,15 +1,9 @@
 import { async } from '@angular/core/testing';
-import { defer } from 'rxjs';
-import { skipWhile } from 'rxjs/operators';
 
+import { asyncData } from 'src/app/testing/testing.helpers';
 import { EnvironmentTestService } from '../environment/environment-test.service';
 import { EnvironmentService } from '../environment/environment.service';
 import { ContactsService } from './contacts.service';
-
-
-function asyncData<T>(data: T) {
-  return defer(() => Promise.resolve(data));
-}
 
 describe('ContactsService', () => {
   let service: ContactsService;

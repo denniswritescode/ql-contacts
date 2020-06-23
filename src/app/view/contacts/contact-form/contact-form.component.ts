@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { IState } from 'src/app/interfaces/shared.interfaces';
 import { IBaseContact, IFormContact, IQLFormInput } from 'src/app/interfaces/shared.interfaces';
 import { FunTitleService } from 'src/app/services/fun-title/fun-title.service';
+import { GeoService } from 'src/app/services/geo/geo.service';
 import { CONTACT_FORM_CONFIG } from './contact-form.config';
 
 @Component({
@@ -16,8 +18,24 @@ export class ContactFormComponent {
 
   constructor(
     private fun: FunTitleService,
+    private geo: GeoService,
     private dialogRef: MatDialogRef<ContactFormComponent>,
-  ) { }
+  ) {
+    this.initStatesAutocomplete();
+  }
+
+  initStatesAutocomplete() {
+    const stateInputIndex = this.formData.findIndex(n => n.config.id === 'state');
+
+    this.geo.get('states')
+      .subscribe(
+        this.populateStates.bind(this, stateInputIndex)
+      );
+  }
+
+  populateStates(index: number, states: IState[]) {
+    this.formData[index].autocomplete = states.map(s => s.name);
+  }
 
   formValid() {
     return this.formData.every(input => input.state === 'VALID' || input.config.id === 'address2');

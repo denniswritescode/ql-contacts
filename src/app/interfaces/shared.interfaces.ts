@@ -37,6 +37,11 @@ export interface IQLFormInputConfiguration {
   charCount?: number;
 }
 
+export interface IState {
+  name: string;
+  abbreviation: string;
+}
+
 /*
  * The idea is to implement many of the angular validators, but I probably
  * won't get them all.
