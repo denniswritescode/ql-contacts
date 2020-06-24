@@ -1,5 +1,5 @@
 ## This is the Second Version of this App!
-For my own peace of mind, I kept working on this project after I submitted it. That (extra) work existed in a separate branch for about a week. I didn't want to keep adding to something I knew people were looking at. But, I think the team has probably taken a look at my original work by now. So I am now merging my new version into master.
+For my own peace of mind, I kept working on this project after I submitted it. That (extra) work existed in a separate branch for about a week. I didn't want to keep committing code to a repo I knew people were looking at. But, I think the team has probably taken a look at my original work by now. So I am now merging my new version into master.
 
 To see the [original release (v1.0) of this application click here](https://github.com/dennisporterjr/ql-contacts/tree/v1.0).
 
