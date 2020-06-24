@@ -11,9 +11,9 @@ import { ContactsService } from '../services/contacts/contacts.service';
 })
 export class ViewComponent implements OnInit {
 
-  public contactList: Observable<IContact[] | []>;
+  public contactList: Observable<IContact[]>;
 
-  constructor( private contacts: ContactsService) { }
+  constructor(private contacts: ContactsService) { }
 
   ngOnInit(): void {
     this.contactList = this.contacts.get();

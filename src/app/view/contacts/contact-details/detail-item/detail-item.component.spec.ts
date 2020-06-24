@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { PhonePipe } from 'src/app/pipes/phone.pipe';
 
 import { DetailItemComponent } from './detail-item.component';
 
@@ -8,7 +9,7 @@ describe('DetailItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailItemComponent ],
+      declarations: [ DetailItemComponent, PhonePipe ],
     })
     .compileComponents();
   }));

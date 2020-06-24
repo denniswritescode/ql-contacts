@@ -85,7 +85,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "codeCoverageExclude": ["src/app/testing/**"],
+            "codeCoverageExclude": [
+              "src/app/testing/**",
+              "**/injection-tokens.ts"
+            ],
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",

@@ -2,17 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { IContact } from 'src/app/interfaces/shared.interfaces';
+import { IState } from 'src/app/interfaces/shared.interfaces';
 import { EnvironmentService } from 'src/app/services/environment/environment.service';
 import { ErrorHandlerService } from 'src/app/services/error-handler/error-handler.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ContactsService extends ErrorHandlerService {
+export class GeoService extends ErrorHandlerService {
 
-  protected name = 'Contacts';
+  protected name = 'Geo';
 
   constructor(
     private http: HttpClient,
@@ -21,8 +20,16 @@ export class ContactsService extends ErrorHandlerService {
     super();
   }
 
-  get(): Observable<IContact[]> {
-    return this.http.get<IContact[]>(`${this.env.CONTACT_API2}/contact`)
+  get(type: string): Observable<any> {
+    if (type === 'states') {
+      return this.getStates();
+    }
+
+    throw Error(`${type} is not a valid option on the ${this.name} service.`);
+  }
+
+  getStates(): Observable<IState[]> {
+    return this.http.get<IState[]>(this.env.US_STATES_API)
       .pipe(
         catchError(this.errorHandler)
       );

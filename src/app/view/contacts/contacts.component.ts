@@ -1,24 +1,19 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 import { Observable, Subscription } from 'rxjs';
 import { skipWhile } from 'rxjs/operators';
-import { IContact } from 'src/app/interfaces/shared.interfaces';
-import { BreakpointService, ViewportService } from 'src/app/services/viewport/viewport.service';
+import { IContact, IViewportService } from 'src/app/interfaces/shared.interfaces';
+import { ViewportConstants } from 'src/app/services/viewport/viewport.constants';
+import { ITOKENS } from 'src/app/shared/injection.tokens';
 import { CONTACT_TABLE_CONFIG } from './contacts-table.config';
 
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: [ './contacts.component.scss' ],
-  providers: [
-    {
-      provide: BreakpointService,
-      useClass: ViewportService,
-    },
-  ],
   animations: [
     trigger('expand', [
       state('expanded', style({ height: '0px', minHeight: '0'})),
@@ -31,7 +26,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   @ViewChild(MatTable) table: MatTable<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @Input() public list: Observable<IContact[]>;
+  @Input() public contacts: Observable<IContact[]>;
   public dataSource: MatTableDataSource<IContact>;
   public dataLength: number;
 
@@ -46,7 +41,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   public subscriptions: Subscription[] = [];
 
   constructor(
-    public viewport: BreakpointService,
+    @Inject(ITOKENS.IViewportService) private viewport: IViewportService,
   ) { }
 
   ngOnInit() {
@@ -56,20 +51,20 @@ export class ContactsComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.list
+      this.contacts
         .pipe(skipWhile(c => !(Array.isArray(c) && c.length) ))
         .subscribe(this.contactsHandler.bind(this))
     );
   }
 
-  contactsHandler(contacts) {
-    this.dataLength = contacts.length;
-    this.dataSource = new MatTableDataSource(contacts);
+  contactsHandler(data) {
+    this.dataLength = data.length;
+    this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
   }
 
   breakpointHandler(breakpoint) {
-    if (breakpoint === ViewportService.STATES.MOBILE) {
+    if (breakpoint === ViewportConstants.STATES.MOBILE) {
       this.setMobileLayout();
     } else {
       this.setFullLayout();

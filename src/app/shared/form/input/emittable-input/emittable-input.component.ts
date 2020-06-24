@@ -1,14 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators, ValidatorFn } from '@angular/forms';
-import { IQLFormInputValidation } from 'src/app/interfaces/shared.interfaces';
-
-/*
- * Sample Template:
- * <input
- *   [formControl]="con"
- *   [(ngModel)]="model"
- *   (ngModelChange)="modelChange.emit(model)" />
- */
+import { IQLFormInputConfiguration } from 'src/app/interfaces/shared.interfaces';
 
 @Component({
   selector: 'app-emittable-input',
@@ -24,14 +16,14 @@ export abstract class EmittableInputComponent implements OnInit {
   @Input() state: string;
   @Output() stateChange = new EventEmitter<string>();
 
-  @Input() name: string;
-  @Input() placeholder: string;
-  @Input() validation: IQLFormInputValidation = { };
+  @Input() config: IQLFormInputConfiguration;
 
   public con: FormControl;
   protected validators: ValidatorFn[] = [];
 
-  constructor() { }
+  constructor() {
+    this.config = this.config || { };
+  }
 
   ngOnInit() {
     this.passedValidation();
@@ -46,23 +38,23 @@ export abstract class EmittableInputComponent implements OnInit {
   }
 
   private passedValidation() {
-    if (this.validation.required) {
+    if (this.config.validation?.required) {
       this.validators.push(Validators.required);
     }
 
-    if (this.validation.maxLength !== undefined) {
-      this.validators.push(Validators.maxLength(this.validation.maxLength));
+    if (this.config.validation?.maxLength !== undefined) {
+      this.validators.push(Validators.maxLength(this.config.validation.maxLength));
     }
 
-    if (this.validation.minLength !== undefined) {
-      this.validators.push(Validators.minLength(this.validation.minLength));
+    if (this.config.validation?.minLength !== undefined) {
+      this.validators.push(Validators.minLength(this.config.validation.minLength));
     }
 
-    if (this.validation.pattern !== undefined) {
-      this.validators.push(Validators.pattern(this.validation.pattern));
+    if (this.config.validation?.pattern !== undefined) {
+      this.validators.push(Validators.pattern(this.config.validation.pattern));
     }
 
-    if (this.validation.numbersOnly !== undefined) {
+    if (this.config.validation?.numbersOnly !== undefined) {
       this.validators.push(Validators.pattern(/^[0-9]\d*$/));
     }
   }

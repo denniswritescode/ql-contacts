@@ -18,6 +18,36 @@ export class AppPage {
   }
 
   hasContactForm() {
-    return element(by.css('app-contact-form')).isPresent().then(present => present);
+    return this.getContactForm().isPresent().then(present => present);
+  }
+
+  getContactForm() {
+    return element(by.css('app-contact-form'));
+  }
+
+  getDialog() {
+    return element(by.css('.mat-dialog-container'));
+  }
+
+  fillOutFormInvalid() {
+    browser.driver.findElement(by.id('company')).sendKeys('Google');
+    browser.driver.findElement(by.id('firstName')).sendKeys('John');
+    browser.driver.findElement(by.id('lastName')).sendKeys('Doe');
+  }
+
+  fillOutFormValid() {
+    browser.driver.findElement(by.id('company')).sendKeys('Google');
+    browser.driver.findElement(by.id('firstName')).sendKeys('John');
+    browser.driver.findElement(by.id('lastName')).sendKeys('Doe');
+    browser.driver.findElement(by.id('phone')).sendKeys('3135551212');
+    browser.driver.findElement(by.id('email')).sendKeys('john@john.com');
+    browser.driver.findElement(by.id('address')).sendKeys('123 Fun St');
+    browser.driver.findElement(by.id('city')).sendKeys('Detroit');
+    browser.driver.findElement(by.id('state')).sendKeys('Michigan');
+    browser.driver.findElement(by.id('zipCode')).sendKeys('60652');
+  }
+
+  getCreateSubmitBtn() {
+    return element(by.id('create-contact-submit'));
   }
 }

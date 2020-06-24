@@ -2,114 +2,138 @@ import { IQLFormInput } from 'src/app/interfaces/shared.interfaces';
 
 export const CONTACT_FORM_CONFIG: IQLFormInput[] = [
   {
-    name: 'Company',
-    key: 'company',
-    placeholder: 'Ex. Google Inc.',
-    type: 'text',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    config: {
+      name: 'Company',
+      id: 'company',
+      placeholder: 'Ex. Google Inc.',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'First Name',
-    key: 'firstName',
-    placeholder: 'Ex. John',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    config: {
+      name: 'First Name',
+      id: 'firstName',
+      placeholder: 'Ex. John',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Last Name',
-    key: 'lastName',
-    placeholder: 'Ex. Doe',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    config: {
+      name: 'Last Name',
+      id: 'lastName',
+      placeholder: 'Ex. Doe',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Phone Number',
-    key: 'phone',
-    placeholder: 'Ex. 313-555-1212',
-    type: 'phone',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    config: {
+      name: 'Phone Number',
+      id: 'phone',
+      placeholder: 'Ex. 313-555-1212',
+      format: 'phone',
+      charCount: 10,
+      validation: {
+        required: true,
+        minLength: 10,
+        maxLength: 10,
+      },
     },
   },
   {
-    name: 'Email Address',
-    key: 'email',
-    placeholder: 'Ex. joe@ql.com',
-    type: 'email',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    config: {
+      name: 'Email Address',
+      id: 'email',
+      placeholder: 'Ex. joe@ql.com',
+      format: 'email',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Address',
-    key: 'address',
-    placeholder: 'Ex. 1234 Easy Street',
-    type: 'text',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    config: {
+      name: 'Address',
+      id: 'address',
+      placeholder: 'Ex. 1234 Easy Street',
+      format: 'text',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Address 2',
-    key: 'address2',
-    placeholder: 'Unit #67',
-    type: 'text',
     value: '',
     state: '',
-    validation: {
-      required: false,
+    config: {
+      name: 'Address 2',
+      id: 'address2',
+      placeholder: 'Ex. Unit #67',
+      format: 'text',
+      validation: {
+        required: false,
+      },
     },
   },
   {
-    name: 'City',
-    key: 'city',
-    placeholder: 'Ex. Detroit',
-    type: 'text',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    config: {
+      name: 'City',
+      id: 'city',
+      placeholder: 'Ex. Detroit',
+      format: 'text',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'State',
-    key: 'state',
-    placeholder: 'Ex. Michigan',
-    type: 'text',
     value: '',
     state: '',
-    validation: {
-      required: true,
+    autocomplete: [],
+    config: {
+      name: 'State/Providence',
+      id: 'state',
+      placeholder: 'Ex. Michigan',
+      format: 'text',
+      validation: {
+        required: true,
+      },
     },
   },
   {
-    name: 'Postal Code',
-    key: 'zipCode',
-    placeholder: 'Ex. 54321',
-    type: 'number',
     value: '',
     state: '',
-    validation: {
-      required: true,
-      minLength: 5,
-      maxLength: 5,
-      numbersOnly: true,
+    config: {
+      name: 'Postal Code',
+      id: 'zipCode',
+      placeholder: 'Ex. 54321',
+      format: 'number',
+      charCount: 5,
+      validation: {
+        required: true,
+        minLength: 5,
+        maxLength: 5,
+        numbersOnly: true,
+      },
     },
   },
 ];

@@ -7,7 +7,7 @@
   <table mat-table multiTemplateDataRows [dataSource]="dataSource" *ngIf="dataLength">
 
     <!-- LOOP THROUGH BASIC COLUMN DEFINITIONS -->
-    <ng-container matColumnDef="{{cfg.col}}" *ngFor="let cfg of tableConfig">
+    <ng-container [matColumnDef]="cfg.col" *ngFor="let cfg of tableConfig">
 
       <!-- COLUMN HEADER -->
       <th mat-header-cell *matHeaderCellDef>

@@ -1,8 +1,9 @@
 import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ITOKENS } from 'src/app/shared/injection.tokens';
+import { FakeViewportService } from 'src/app/testing/viewport.service.fake';
 import { ContactFormComponent } from '../contact-form/contact-form.component';
-import { FakeViewportService } from './../../../testing/viewport.service.fake';
 import { ContactAddComponent } from './contact-add.component';
 
 describe('ContactAddComponent', () => {
@@ -31,6 +32,9 @@ describe('ContactAddComponent', () => {
   };
 
   beforeEach(async(() => {
+    viewport = new FakeViewportService();
+    const vpfactory = () => viewport;
+
     TestBed.configureTestingModule({
       declarations: [ ContactAddComponent ],
       providers: [
@@ -42,16 +46,24 @@ describe('ContactAddComponent', () => {
           provide: MatSnackBar,
           useValue: fakeMatSnackBar,
         },
+        {
+          provide: ITOKENS.IViewportService,
+          // Using 'useFactory' (as opposed to 'useValue') is the only way to
+          // make sure the viewport our component uses is the EXACT same viewport
+          // that's accessible to us outside of the component, and in our tests.
+          // Consequently this is the only way to get the majority of our viewport
+          // tests to pass because of the 'cloning issue'.
+          // https://github.com/angular/angular/issues/10788
+          useFactory: vpfactory.bind(this),
+        },
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    viewport = new FakeViewportService();
     fixture = TestBed.createComponent(ContactAddComponent);
     component = fixture.componentInstance;
-    component.viewport = viewport;
     fixture.detectChanges();
   });
 

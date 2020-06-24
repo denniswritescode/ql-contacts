@@ -13,30 +13,41 @@ import {
   CONTACT_SAMPLE_SERIALIZATION,
 } from './contact-form.sample';
 
+import { EnvironmentTestService } from 'src/app/services/environment/environment-test.service';
+import { EnvironmentService } from 'src/app/services/environment/environment.service';
+import { GeoService } from 'src/app/services/geo/geo.service';
+import { asyncData } from 'src/app/testing/testing.helpers';
 import { ContactFormComponent } from './contact-form.component';
 
 describe('ContactFormComponent', () => {
   let component: ContactFormComponent;
   let fixture: ComponentFixture<ContactFormComponent>;
+  let geo;
+  let httpClientSpy: { get: jasmine.Spy };
   const fakeDialogRef = {
     close: jasmine.createSpy('dialogClose'),
   };
 
   beforeEach(async(() => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', [ 'get' ]);
+    httpClientSpy.get.and.returnValue(
+      asyncData([ {
+        name: 'Michigan',
+        abbreviation: 'MI',
+      } ])
+    );
+
+    geo = new GeoService(
+      httpClientSpy as any,
+      new EnvironmentTestService() as EnvironmentService
+    );
+
     TestBed.configureTestingModule({
       declarations: [
         ContactFormComponent,
         MockComponent({
           selector: 'app-input-text',
-          inputs: [ 'name', 'value', 'placeholder', 'state', 'validation' ],
-        }),
-        MockComponent({
-          selector: 'app-input-email',
-          inputs: [ 'name', 'value', 'placeholder', 'state', 'validation' ],
-        }),
-        MockComponent({
-          selector: 'app-input-phone',
-          inputs: [ 'name', 'value', 'placeholder', 'state', 'validation' ],
+          inputs: [ 'autocomplete', 'value', 'state', 'config' ],
         }),
         MockComponent({ selector: 'mat-hint' }),
         MockComponent({ selector: 'mat-spinner' }),
@@ -44,6 +55,10 @@ describe('ContactFormComponent', () => {
       providers: [
         {
           provide: MatDialogRef, useValue: fakeDialogRef,
+        },
+        {
+          provide: GeoService,
+          useValue: geo,
         },
       ],
       imports: [
@@ -76,6 +91,13 @@ describe('ContactFormComponent', () => {
   it('should prepare payload for create call, even if there is an address 2', () => {
     expect(JSON.stringify(component.prepare(CONTACT_SAMPLE_IFORMCONTACT2)))
       .toBe(JSON.stringify(CONTACT_SAMPLE_FORM_PAYLOAD2));
+  });
+
+  it('should populate the state\'s autocomplete property', () => {
+    const stateObject = component.formData.find(n => n.config.id === 'state');
+
+    expect(stateObject.autocomplete.length).toBe(1);
+    expect(stateObject.autocomplete).toEqual([ 'Michigan' ]);
   });
 
   describe('announcements, detestments and success', () => {
@@ -155,18 +177,5 @@ describe('ContactFormComponent', () => {
       expect(component.formValid()).toBeFalsy();
     });
 
-    // Due to the timeout, this test is unreliable. Should be tested via e2e
-
-    // it('should close the dialog with success message after 3 seconds',
-    //   fakeAsync(() => {
-    //     component.createContact();
-    //     tick(4000);
-    //     fixture.detectChanges();
-    //     fixture.whenStable()
-    //       .then(() => {
-    //         expect(fakeDialogRef.close).toHaveBeenCalledWith('success');
-    //       });
-    //   })
-    // );
   });
 });

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class EnvironmentTestService {
-  public readonly APIURL: string = '';
-  public readonly API2URL: string = '';
+  public readonly CONTACT_API: string = '';
+  public readonly CONTACT_API2: string = '';
+  public readonly US_STATES_API: string = 'http://test-states/';
 }

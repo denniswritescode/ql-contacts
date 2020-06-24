@@ -15,7 +15,7 @@ describe('ViewComponent', () => {
         ViewComponent,
         MockComponent({ selector: 'app-header'}),
         MockComponent({ selector: 'app-contact-header'}),
-        MockComponent({ selector: 'app-contacts', inputs: [ 'list' ]}),
+        MockComponent({ selector: 'app-contacts', inputs: [ 'contacts' ]}),
         MockComponent({ selector: 'app-footer'}),
       ],
       imports: [ HttpClientTestingModule ],
