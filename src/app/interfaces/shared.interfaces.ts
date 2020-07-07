@@ -14,6 +14,11 @@ export interface IContact extends IBaseContact {
   index: number;
 }
 
+export interface ITableColumnConfig {
+  name: string;
+  header: string;
+}
+
 export interface IFormContact extends IBaseContact {
   address2: string;
   city: string;

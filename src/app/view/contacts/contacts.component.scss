@@ -15,30 +15,6 @@
   table.mat-table {
     width: 100%;
 
-    th.mat-header-cell,
-    td.mat-cell {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-    th.mat-header-cell {
-      font-size: 1.4em;
-    }
-
-    .mat-column-phone,
-    .mat-column-more {
-      text-align: center;
-    }
-
-    .mat-column-more {
-      .show-more {
-        position: relative;
-        top: 5px;
-        color: lighten($color: $primary, $amount: 30);
-      }
-    }
-
     .mat-column-phone {
       a {
         color: $accent;

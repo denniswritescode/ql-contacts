@@ -16,18 +16,9 @@ describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let viewport: FakeViewportService;
   let fixture: ComponentFixture<ContactsComponent>;
-  const oneContact: IContact = {
-    _id: '5de91c005b98615393e74931',
-    index: 0,
-    firstName: 'Browning',
-    lastName: 'Graham',
-    company: 'MELBACOR',
-    email: 'browninggraham@melbacor.com',
-    phone: '+1 (906) 585-2525',
-    address: '920 Hastings Street, Roosevelt, Puerto Rico, 5573',
-  };
+  const oneElement = { test: 'value' };
   const observers = [];
-  const contactsObservable: Observable<IContact[]> = new Observable((observer) => {
+  const observableData: Observable<any[]> = new Observable((observer) => {
     observers.push(observer);
     return { unsubscribe() { } };
   });
@@ -44,9 +35,6 @@ describe('ContactsComponent', () => {
         // small third party components whose code doesn't need to be "double tested"
         // by us. So we mock them.)
         MockComponent({ selector: 'app-contact-details', inputs: [ 'contact' ] }),
-        MockComponent({ selector: 'app-name-cell', inputs: [ 'contact', 'mobile' ] }),
-        MockComponent({ selector: 'app-name-header', inputs: [ 'mobile' ] }),
-        MockComponent({ selector: 'app-phone-cell', inputs: [ 'phone' ] }),
         MockComponent({ selector: 'mat-icon' }),
         MockComponent({ selector: 'mat-spinner' }),
         MockComponent({ selector: 'mat-paginator', inputs: [ 'length', 'pageSize', 'pageIndex' ] }),
@@ -76,7 +64,7 @@ describe('ContactsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
-    component.contacts = contactsObservable;
+    component.data = observableData;
     fixture.detectChanges();
   });
 
@@ -100,26 +88,12 @@ describe('ContactsComponent', () => {
     })
   );
 
-  it('should user the viewport service for responsive data',
-    fakeAsync(() => {
-      viewport.setFullscreen();
-      tick();
-      expect(viewport.mobile()).toBe(false);
-      expect(component.mobile()).toBe(false);
-
-      viewport.setMobile();
-      tick();
-      expect(viewport.mobile()).toBe(true);
-      expect(component.mobile()).toBe(true);
-    })
-  );
-
-  it('retrieve the contacts list, and populate the data source',
+  it('retrieve data, and populate the data source',
     fakeAsync(() => {
       expect(component.dataLength).toBeUndefined();
       expect(component.dataSource).toBeUndefined();
 
-      observers.forEach(o => o.next([ oneContact ]));
+      observers.forEach(o => o.next([ oneElement ]));
       tick();
 
       expect(component.dataLength).toBe(1);

@@ -94,6 +94,8 @@ describe('ContactFormComponent', () => {
   });
 
   it('should populate the state\'s autocomplete property', () => {
+    component.formData = CONTACT_SAMPLE_FORM_DATA;
+    fixture.detectChanges();
     const stateObject = component.formData.find(n => n.config.id === 'state');
 
     expect(stateObject.autocomplete.length).toBe(1);

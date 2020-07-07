@@ -1,3 +1,10 @@
+/**
+ * @TODO - Convert this component into a generic table component with:
+ *          - A configurable expandable row/drawer
+ *          - Configurable columns that collapse and have different views on mobile.
+ *          - Usage of ng-content (mabye ngComponentOutlet?) so you can provide
+ *            unique table cell templates.
+ */
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -5,8 +12,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 import { Observable, Subscription } from 'rxjs';
 import { skipWhile } from 'rxjs/operators';
-import { IContact, IViewportService } from 'src/app/interfaces/shared.interfaces';
-import { ViewportConstants } from 'src/app/services/viewport/viewport.constants';
+import { IContact, ITableColumnConfig, IViewportService } from 'src/app/interfaces/shared.interfaces';
 import { ITOKENS } from 'src/app/shared/injection.tokens';
 import { CONTACT_TABLE_CONFIG } from './contacts-table.config';
 
@@ -26,7 +32,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   @ViewChild(MatTable) table: MatTable<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @Input() public contacts: Observable<IContact[]>;
+  @Input() public data: Observable<IContact[]>;
   public dataSource: MatTableDataSource<IContact>;
   public dataLength: number;
 
@@ -35,13 +41,13 @@ export class ContactsComponent implements OnInit, OnDestroy {
   public detailColumns: string[] = [];
   public expanded: IContact;
 
-  public tableConfig = CONTACT_TABLE_CONFIG;
-  public fullColumns: string[] = [ 'name', 'phone', 'company', 'more' ];
+  public columns: ITableColumnConfig[] = CONTACT_TABLE_CONFIG;
+  public fullscreenColumns: string[] = [ 'name', 'phone', 'company', 'more' ];
   public mobileColumns: string[] = [ 'name' ];
   public subscriptions: Subscription[] = [];
 
   constructor(
-    @Inject(ITOKENS.IViewportService) private viewport: IViewportService,
+    @Inject(ITOKENS.IViewportService) public viewport: IViewportService,
   ) { }
 
   ngOnInit() {
@@ -51,7 +57,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.contacts
+      this.data
         .pipe(skipWhile(c => !(Array.isArray(c) && c.length) ))
         .subscribe(this.contactsHandler.bind(this))
     );
@@ -63,24 +69,12 @@ export class ContactsComponent implements OnInit, OnDestroy {
     this.dataSource.paginator = this.paginator;
   }
 
-  breakpointHandler(breakpoint) {
-    if (breakpoint === ViewportConstants.STATES.MOBILE) {
-      this.setMobileLayout();
+  breakpointHandler() {
+    if (this.viewport.mobile()) {
+      this.displayedColumns = this.mobileColumns;
     } else {
-      this.setFullLayout();
+      this.displayedColumns = this.fullscreenColumns;
     }
-  }
-
-  mobile() {
-    return this.viewport.mobile();
-  }
-
-  setMobileLayout() {
-    this.displayedColumns = this.mobileColumns;
-  }
-
-  setFullLayout() {
-    this.displayedColumns = this.fullColumns;
   }
 
   ngOnDestroy() {
