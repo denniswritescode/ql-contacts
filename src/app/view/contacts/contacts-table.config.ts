@@ -1,22 +1,22 @@
 export const CONTACT_TABLE_CONFIG = [
   {
-    col: 'name',
+    name: 'name',
     header: 'Contact',
   },
   {
-    col: 'phone',
+    name: 'phone',
     header: 'Phone',
   },
   {
-    col: 'company',
+    name: 'company',
     header: 'Company',
   },
   {
-    col: 'email',
+    name: 'email',
     header: 'Email',
   },
   {
-    col: 'more',
+    name: 'more',
     header: '',
   },
 ];

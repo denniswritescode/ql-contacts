@@ -1,0 +1,35 @@
+<!-- LOOP THROUGH BASIC COLUMN DEFINITIONS -->
+<ng-container [matColumnDef]="column.name">
+
+  <!-- COLUMN HEADER -->
+  <th mat-header-cell *matHeaderCellDef>
+
+    <div [ngSwitch]="column.name">
+
+      <!-- Only the column with the name 'name' uses a special template -->
+      <app-name-header *ngSwitchCase="'name'" [mobile]="mobile"></app-name-header>
+
+      <div *ngSwitchDefault>{{column.header}}</div>
+
+    </div>
+
+  </th>
+
+  <!-- COLUMN CELL -->
+  <td mat-cell *matCellDef="let data">
+
+    <div [ngSwitch]="column.name">
+
+      <app-name-cell *ngSwitchCase="'name'" [contact]="data" [mobile]="mobile"></app-name-cell>
+
+      <app-phone-cell *ngSwitchCase="'phone'" [phone]="data.phone"></app-phone-cell>
+
+      <mat-icon class="show-more" *ngSwitchCase="'more'">add_circle</mat-icon>
+
+      <div *ngSwitchDefault>{{data[column.name]}}</div>
+
+    </div>
+
+  </td>
+
+</ng-container>

@@ -29,6 +29,7 @@ import { ContactAddComponent } from './view/contacts/contact-add/contact-add.com
 import { NameCellComponent } from './view/contacts/contact-cells/name-cell/name-cell.component';
 import { NameHeaderComponent } from './view/contacts/contact-cells/name-header/name-header.component';
 import { PhoneCellComponent } from './view/contacts/contact-cells/phone-cell/phone-cell.component';
+import { ContactColumnsComponent } from './view/contacts/contact-columns/contact-columns.component';
 import { ContactDetailsComponent } from './view/contacts/contact-details/contact-details.component';
 import { DetailItemComponent } from './view/contacts/contact-details/detail-item/detail-item.component';
 import { ContactFormComponent } from './view/contacts/contact-form/contact-form.component';
@@ -54,6 +55,7 @@ import { ViewComponent } from './view/view.component';
     NameCellComponent,
     NameHeaderComponent,
     PhoneCellComponent,
+    ContactColumnsComponent,
   ],
   entryComponents: [
     ContactFormComponent,
